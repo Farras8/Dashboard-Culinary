@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+
+	<title>AdminHub</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">KING CULINARY</span>
+		</a>
+		<ul class="side-menu top">
+			<li >
+				<a href="index.html" class="no-active">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+            <li>
+				<a href="categories.html" class="no-active">
+					<i class='bx bxs-book-content'></i>
+					<span class="text">Categories</span>
+				</a>
+			</li>
+			<li >
+				<a href="foodRecipe.html" class="active">
+					<i class='bx bxs-food-menu' ></i>
+					<span class="text">Food Recipe</span>
+				</a>
+			</li>
+            <li>
+				<a href="recipeCategories.html" class="no-active">
+					<i class='bx bxs-book'></i>
+					<span class="text">Recipe Categories</span>
+				</a>
+			</li>
+			<li>
+				<a href="comment.html" class="no-active">
+					<i class='bx bxs-comment' ></i>
+					<span class="text">Comment</span>
+				</a>
+			</li>
+			<li>
+				<a href="user.html" class="no-active">
+					<i class='bx bxs-user' ></i>
+					<span class="text">User</span>
+				</a>
+			</li>
+			<li>
+				<a href="admin.html" class="no-active">
+					<i class='bx bxs-user-circle' ></i>
+					<span class="text">Admin</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="login.html" class="logout" >
+					<i class='bx bx-log-in' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Food Recipe</h1>
+					<ul class="breadcrumb">
+						<li>
+							<button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Add Food Recipe
+                              </button>
+                              
+                              <!-- Modal -->
+                              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Add Food Recipe</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form id="recipe-form">
+                                        <div class="mb-3">
+                                          <label for="recipe-id" class="form-label">Recipe ID</label>
+                                          <input type="text" class="form-control" id="recipe-id" required>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="user-name" class="form-label">User Name</label>
+                                          <input type="text" class="form-control" id="user-name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="recipe-name" class="form-label">Recipe Name</label>
+                                          <input type="text" class="form-control" id="recipe-name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="description" class="form-label">Description</label>
+                                          <textarea class="form-control" id="description" rows="3" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="ingredients" class="form-label">Ingredients</label>
+                                          <textarea class="form-control" id="ingredients" rows="3" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="instructions" class="form-label">Instructions</label>
+                                          <textarea class="form-control" id="instructions" rows="3" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="image-url" class="form-label">Image URL</label>
+                                          <input type="url" class="form-control" id="image-url" required>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="created-at" class="form-label">Created At</label>
+                                          <input type="date" class="form-control" id="created-at" required>
+                                        </div>
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary" onclick="saveRecipe()">Save changes</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+						</li>
+					</ul>
+				</div>
+			</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Food Recipe</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Recipe ID</th>
+								<th>User Name</th>
+								<th>Recipe Name</th>
+                                <th>Description</th>
+                                <th>Ingredients</th>
+                                <th>Instruction</th>
+                                <th>Image</th>
+                                <th>Created at</th>
+                                <th>Button</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>RECIPE01</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+							<tr>
+								<td>RECIPE02</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+							<tr>
+								<td>RECIPE03</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+							<tr>
+								<td>RECIPE03</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+							<tr>
+								<td>RECIPE03</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+</body>
+</html>

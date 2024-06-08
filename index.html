@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+
+	<title>AdminHub</title>
+</head>
+
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">KING CULINARY</span>
+		</a>
+		<ul class="side-menu top">
+			<li>
+				<a href="index.html" class="active">
+					<i class='bx bxs-dashboard'></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="categories.html" class="no-active">
+					<i class='bx bxs-book-content'></i>
+					<span class="text">Categories</span>
+				</a>
+			</li>
+			<li>
+				<a href="foodRecipe.html" class="no-active">
+					<i class='bx bxs-food-menu'></i>
+					<span class="text">Food Recipe</span>
+				</a>
+			</li>
+			<li>
+				<a href="recipeCategories.html" class="no-active">
+					<i class='bx bxs-book'></i>
+					<span class="text">Recipe Categories</span>
+				</a>
+			</li>
+			<li>
+				<a href="comment.html" class="no-active">
+					<i class='bx bxs-comment'></i>
+					<span class="text">Comment</span>
+				</a>
+			</li>
+			<li>
+				<a href="user.html" class="no-active">
+					<i class='bx bxs-user'></i>
+					<span class="text">User</span>
+				</a>
+			</li>
+			<li>
+				<a href="admin.html" class="no-active">
+					<i class='bx bxs-user-circle'></i>
+					<span class="text">Admin</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="login.html" class="logout">
+					<i class='bx bx-log-in'></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right'></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-calendar-check'></i>
+					<span class="text">
+						<h3>1020</h3>
+						<p>Food Recipe</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group'></i>
+					<span class="text">
+						<h3>2834</h3>
+						<p>Users</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-dollar-circle'></i>
+					<span class="text">
+						<h3>$2543</h3>
+						<p>Comment</p>
+					</span>
+				</li>
+			</ul>
+
+
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Food Recipe</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Recipe ID</th>
+								<th>User Name</th>
+								<th>Recipe Name</th>
+                                <th>Description</th>
+                                <th>Ingredients</th>
+                                <th>Instruction</th>
+                                <th>Image</th>
+                                <th>Created at</th>
+                                <th>Button</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>RECIPE01</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+							<tr>
+								<td>RECIPE02</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+							<tr>
+								<td>RECIPE03</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+							<tr>
+								<td>RECIPE03</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+							<tr>
+								<td>RECIPE03</td>
+								<td>Roni</td>
+								<td>Pizza</td>
+                                <td>Italian Food</td>
+                                <td>Ingredient 1, Ingredient 2, etc</td>
+                                <td>Instruction 1, Instruction 2, etc</td>
+                                <td><img src="img/people.png"></td>
+                                <td>01-10-2021</td>
+                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<a href="foodRecipe.html" class="more-food">more food recipe >></a>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+</body>
+
+</html>
