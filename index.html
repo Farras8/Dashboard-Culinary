@@ -153,65 +153,9 @@
                                 <th>Instruction</th>
                                 <th>Image</th>
                                 <th>Created at</th>
-                                <th>Button</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>RECIPE01</td>
-								<td>Roni</td>
-								<td>Pizza</td>
-                                <td>Italian Food</td>
-                                <td>Ingredient 1, Ingredient 2, etc</td>
-                                <td>Instruction 1, Instruction 2, etc</td>
-                                <td><img src="img/people.png"></td>
-                                <td>01-10-2021</td>
-                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
-							</tr>
-							<tr>
-								<td>RECIPE02</td>
-								<td>Roni</td>
-								<td>Pizza</td>
-                                <td>Italian Food</td>
-                                <td>Ingredient 1, Ingredient 2, etc</td>
-                                <td>Instruction 1, Instruction 2, etc</td>
-                                <td><img src="img/people.png"></td>
-                                <td>01-10-2021</td>
-                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
-							</tr>
-							<tr>
-								<td>RECIPE03</td>
-								<td>Roni</td>
-								<td>Pizza</td>
-                                <td>Italian Food</td>
-                                <td>Ingredient 1, Ingredient 2, etc</td>
-                                <td>Instruction 1, Instruction 2, etc</td>
-                                <td><img src="img/people.png"></td>
-                                <td>01-10-2021</td>
-                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
-							</tr>
-							<tr>
-								<td>RECIPE03</td>
-								<td>Roni</td>
-								<td>Pizza</td>
-                                <td>Italian Food</td>
-                                <td>Ingredient 1, Ingredient 2, etc</td>
-                                <td>Instruction 1, Instruction 2, etc</td>
-                                <td><img src="img/people.png"></td>
-                                <td>01-10-2021</td>
-                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
-							</tr>
-							<tr>
-								<td>RECIPE03</td>
-								<td>Roni</td>
-								<td>Pizza</td>
-                                <td>Italian Food</td>
-                                <td>Ingredient 1, Ingredient 2, etc</td>
-                                <td>Instruction 1, Instruction 2, etc</td>
-                                <td><img src="img/people.png"></td>
-                                <td>01-10-2021</td>
-                                <td class="btn-ed"><button class="btn-edit">Edit</button><button class="btn-del">Delete</button></td>
-							</tr>
+						<tbody id="recipeTBody">
 						</tbody>
 					</table>
 				</div>
@@ -224,7 +168,89 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script src="script.js"></script>
-	<script src="dbconn.js" type="module"></script>
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+		import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+			apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
+			authDomain: "kingculinarydb.firebaseapp.com",
+			databaseURL: "https://kingculinarydb-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "kingculinarydb",
+			storageBucket: "kingculinarydb.appspot.com",
+			messagingSenderId: "1096190427358",
+			appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
+		};
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+		const database = getDatabase(app);
+
+		// Add user Table Item
+		function addRecipeTableItem(recipeId, username, recipeName, description, ingredients, instructions, imageUrl, createdAt) {
+			let trow = document.createElement("tr");
+			let td1 = document.createElement("td");
+			let td2 = document.createElement("td");
+			let td3 = document.createElement("td");
+			let td4 = document.createElement("td");
+			let td5 = document.createElement("td");
+			let td6 = document.createElement("td");
+			let td7 = document.createElement("td");
+			let td8 = document.createElement("td");
+			let td9 = document.createElement("td");
+
+			td1.innerHTML = recipeId;
+			td2.innerHTML = username;
+			td3.innerHTML = recipeName;
+			td4.innerHTML = description;
+			td5.innerHTML = ingredients;
+			td6.innerHTML = instructions;
+			td7.innerHTML = imageUrl;
+			td8.innerHTML = createdAt;
+
+			trow.appendChild(td1);
+			trow.appendChild(td2);
+			trow.appendChild(td3);
+			trow.appendChild(td4);
+			trow.appendChild(td5);
+			trow.appendChild(td6);
+			trow.appendChild(td7);
+			trow.appendChild(td8);
+
+			document.getElementById("recipeTBody").appendChild(trow);
+		}
+
+		// Add All comments to Table
+		function addAllRecipeTable(Recipe) {
+			document.getElementById("recipeTBody").innerHTML = "";
+			Recipe.forEach(element => {
+				addRecipeTableItem(element.recipeId, element.username, element.recipeName, element.description, element.ingredients, element.instructions, element.imageUrl, element.createdAt);
+			});
+		}
+
+		// Fetch All comments from Firebase
+		function getAllData() {
+			const dbref = ref(database);
+			get(child(dbref, "recipes")).then((snapshot) => {
+				if (snapshot.exists()) {
+					var Recipe = [];
+					snapshot.forEach(childSnapshot => {
+						Recipe.push(childSnapshot.val());
+					});
+					addAllRecipeTable(Recipe);
+				} else {
+					console.log("No data available");
+				}
+			}).catch((error) => {
+				console.log(error);
+			});
+		}
+
+		// Initialize Data Fetch
+		window.onload = getAllData();
+	</script>
 </body>
 
 </html>
