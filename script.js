@@ -82,3 +82,21 @@ switchMode.addEventListener('change', function () {
 		document.body.classList.remove('dark');
 	}
 })
+
+//config firebase
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+	apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
+	authDomain: "kingculinarydb.firebaseapp.com",
+	databaseURL: "https://kingculinarydb-default-rtdb.asia-southeast1.firebasedatabase.app",
+	projectId: "kingculinarydb",
+	storageBucket: "kingculinarydb.appspot.com",
+	messagingSenderId: "1096190427358",
+	appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
+};

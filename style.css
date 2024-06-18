@@ -154,7 +154,13 @@ body {
 }
 
 /* NAVBAR */
-
+.hiAdmin{
+	color: #E4DAA9;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 #content nav {
 	height: 56px;
 	background: rgb(18, 189, 166);
@@ -482,6 +488,8 @@ body {
 /* MAIN */
 /* CONTENT */
 
+
+
 @media (max-width: 768px) {
     #sidebar {
         left: -280px;
@@ -494,6 +502,11 @@ body {
 
     #content nav .bx-menu {
         display: block;
+    }
+	.table-data .order th, 
+    .table-data .order td {
+        padding: 50px ;
+		text-align: center;
     }
 }
 

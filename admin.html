@@ -13,8 +13,10 @@
 <!-- SIDEBAR -->
 <section id="sidebar">
     <a href="#" class="brand">
-        <i class='bx bxs-smile'></i>
         <span class="text">KING CULINARY</span>
+    </a>
+    <a href="" class="img-brand">
+        <img src="img/King_Culinary_Logo-removebg-preview.png">
     </a>
     <ul class="side-menu top">
         <li>
@@ -33,12 +35,6 @@
             <a href="foodRecipe.html" class="no-active">
                 <i class='bx bxs-food-menu'></i>
                 <span class="text">Food Recipe</span>
-            </a>
-        </li>
-        <li>
-            <a href="recipeCategories.html" class="no-active">
-                <i class='bx bxs-book'></i>
-                <span class="text">Recipe Categories</span>
             </a>
         </li>
         <li>
@@ -78,13 +74,10 @@
         <i class='bx bx-menu'></i>
         <input type="checkbox" id="switch-mode" hidden>
         <label for="switch-mode" class="switch-mode"></label>
-        <a href="#" class="notification">
-            <i class='bx bxs-bell'></i>
-            <span class="num">8</span>
-        </a>
-        <a href="#" class="profile">
-            <img src="img/people.png">
-        </a>
+        <div class="hiAdmin">
+            <i class='bx bx-user'></i>
+            <h6 class="AdminName">Admin</h6>
+        </div>
     </nav>
     <!-- NAVBAR -->
 
@@ -348,6 +341,21 @@
 
     // Initialize Data Fetch
     window.onload = getAllData();
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const adminName = localStorage.getItem("adminUsername");
+        if (adminName) {
+            document.querySelector(".AdminName").textContent = adminName;
+        } else {
+            alert("No admin logged in.");
+            window.location.href = "login.html";
+        }
+        document.querySelector(".logout").addEventListener("click", function() {
+            localStorage.removeItem("adminUsername");
+            window.location.href = "login.html";
+        });
+    });
 </script>
 </body>
 </html>

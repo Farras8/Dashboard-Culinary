@@ -17,13 +17,13 @@
 <body>
     <div class="wrap-login">
         <div class="login">
-            <form action="" class="login-form">
+            <form id="login-form" class="login-form">
                 <h1 class="login-title">Login</h1>
                 <div class="login-content">
                     <div class="login-box">
                         <div class="login-box-input">
-                            <i data-feather="mail"></i>
-                            <input type="email" required class="login-input" id="login-email" placeholder="Email">
+                            <i data-feather="user"></i>
+                            <input type="text" required class="login-input" id="login-email" placeholder="Username">
                         </div>
                         <span id="email-error" class="error-message"></span>
                     </div>
@@ -35,15 +35,66 @@
                         <span id="password-error" class="error-message"></span>
                     </div>
                 </div>
-                <button type="submit" class="login-button"><a href="index.html">Login</a></button>
-
+                <button type="submit" class="login-button">Login</button>
             </form>
         </div>
     </div>
     <script>
         feather.replace()
     </script>
-    <script src="JS/script.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
+            authDomain: "kingculinarydb.firebaseapp.com",
+            databaseURL: "https://kingculinarydb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "kingculinarydb",
+            storageBucket: "kingculinarydb.appspot.com",
+            messagingSenderId: "1096190427358",
+            appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Login form submission
+        document.getElementById("login-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-pass").value;
+
+            const dbref = ref(database);
+
+            get(child(dbref, "admin")).then((snapshot) => {
+                if (snapshot.exists()) {
+                    let validCredentials = false;
+                    snapshot.forEach(childSnapshot => {
+                        const adminData = childSnapshot.val();
+                        if (adminData.username === email && adminData.password === password) {
+                            validCredentials = true;
+                            localStorage.setItem("adminUsername", adminData.username);
+                        }
+                    });
+
+                    if (validCredentials) {
+                        window.location.href = "index.html";
+                    } else {
+                        alert("Invalid email or password.");
+                    }
+                } else {
+                    alert("No data available");
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+        });
+    </script>
 </body>
 
 </html>
