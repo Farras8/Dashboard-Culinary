@@ -63,12 +63,21 @@ body {
 #sidebar::--webkit-scrollbar {
 	display: none;
 }
+.img-brand{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
+.img-brand img{
+	width: 180px;
+}
 #sidebar .brand {
 	font-size: 24px;
 	font-weight: 700;
 	height: 56px;
 	display: flex;
+	justify-content: center;
 	align-items: center;
 	color: #E4DAA9;
 	position: sticky;
@@ -78,11 +87,6 @@ body {
 	z-index: 500;
 	padding-bottom: 20px;
 	box-sizing: content-box;
-}
-#sidebar .brand .bx {
-	min-width: 60px;
-	display: flex;
-	justify-content: center;
 }
 #sidebar .side-menu {
 	width: 100%;
