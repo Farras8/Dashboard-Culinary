@@ -115,6 +115,13 @@
                                           <label for="user-name" class="form-label">User Name</label>
                                           <input type="text" class="form-control" id="user-name" required>
                                         </div>
+										<div class="mb-3">
+											<label for="category" class="form-label">Category</label>
+											<select class="form-select" id="category" required>
+												<!-- Options will be populated dynamically from Firebase -->
+											</select>
+										</div>
+										
                                         <div class="mb-3">
                                           <label for="recipe-name" class="form-label">Recipe Name</label>
                                           <input type="text" class="form-control" id="recipe-name" required>
@@ -167,6 +174,13 @@
                                           <label for="user-name" class="form-label">User Name</label>
                                           <input type="text" class="form-control" id="edit-user-name" required>
                                         </div>
+										<div class="mb-3">
+											<label for="edit-category" class="form-label">Category</label>
+											<select class="form-select" id="edit-category" required>
+												<!-- Options will be populated dynamically from Firebase -->
+											</select>
+										</div>
+										
                                         <div class="mb-3">
                                           <label for="recipe-name" class="form-label">Recipe Name</label>
                                           <input type="text" class="form-control" id="edit-recipe-name" required>
@@ -221,6 +235,7 @@
 							<tr>
 								<th>Recipe ID</th>
 								<th>User Name</th>
+								<th>Category</th>
 								<th>Recipe Name</th>
                                 <th>Description</th>
                                 <th>Ingredients</th>
@@ -265,6 +280,7 @@
 		// Add recipe
 		document.getElementById("buttonAdd").addEventListener("click", function() {
 			let recipeId = document.getElementById('recipe-id').value;
+			let category = document.getElementById('category').value;
 			let username = document.getElementById('user-name').value;
 			let recipeName = document.getElementById('recipe-name').value;
 			let description = document.getElementById('description').value;
@@ -276,6 +292,7 @@
 			set(ref(database, "recipes/" + recipeId), {
 				recipeId: Number(recipeId),
 				username: username,
+				category: category,
 				recipeName: recipeName,
 				description: description,
 				ingredients: ingredients,
@@ -300,6 +317,7 @@
         // Update recipe
 		document.getElementById("buttonEdit").addEventListener("click", function() {
 			let recipeId = document.getElementById('edit-recipe-id').value;
+			let category = document.getElementById('edir-category').value;
 			let username = document.getElementById('edit-user-name').value;
 			let recipeName = document.getElementById('edit-recipe-name').value;
 			let description = document.getElementById('edit-description').value;
@@ -311,6 +329,7 @@
 			update(ref(database, "recipes/" + recipeId), {
 				recipeId: Number(recipeId),
 				username: username,
+				category: category,
 				recipeName: recipeName,
 				description: description,
 				ingredients: ingredients,
@@ -344,7 +363,7 @@
 		}
 
 		// Add user Table Item
-		function addRecipeTableItem(recipeId, username, recipeName, description, ingredients, instructions, imageUrl, createdAt) {
+		function addRecipeTableItem(recipeId, username, category, recipeName, description, ingredients, instructions, imageUrl, createdAt) {
 			let trow = document.createElement("tr");
 			let td1 = document.createElement("td");
 			let td2 = document.createElement("td");
@@ -355,15 +374,17 @@
 			let td7 = document.createElement("td");
 			let td8 = document.createElement("td");
 			let td9 = document.createElement("td");
+			let td10 = document.createElement("td");
 
 			td1.innerHTML = recipeId;
 			td2.innerHTML = username;
-			td3.innerHTML = recipeName;
-			td4.innerHTML = description;
-			td5.innerHTML = ingredients;
-			td6.innerHTML = instructions;
-			td7.innerHTML = imageUrl;
-			td8.innerHTML = createdAt;
+			td3.innerHTML = category;
+			td4.innerHTML = recipeName;
+			td5.innerHTML = description;
+			td6.innerHTML = ingredients;
+			td7.innerHTML = instructions;
+			td8.innerHTML = imageUrl;
+			td9.innerHTML = createdAt;
 
 			// Create the Edit button
 			let editButton = document.createElement("button");
@@ -374,6 +395,7 @@
 			editButton.onclick = function() {
 				 document.getElementById('edit-recipe-id').value = recipeId;
 				 document.getElementById('edit-user-name').value = username;
+				 document.getElementById('edit-category').value = category;
 				 document.getElementById('edit-recipe-name').value = recipeName;
 				 document.getElementById('edit-description').value = description;
 				 document.getElementById('edit-ingredients').value = ingredients;
@@ -393,8 +415,8 @@
 				}
 			};
 
-			td9.appendChild(editButton);
-			td9.appendChild(deleteButton);
+			td10.appendChild(editButton);
+			td10.appendChild(deleteButton);
 
 			trow.appendChild(td1);
 			trow.appendChild(td2);
@@ -405,6 +427,7 @@
 			trow.appendChild(td7);
 			trow.appendChild(td8);
 			trow.appendChild(td9);
+			trow.appendChild(td10);
 
 			document.getElementById("recipeTBody").appendChild(trow);
 		}
@@ -413,7 +436,7 @@
 		function addAllRecipeTable(Recipe) {
 			document.getElementById("recipeTBody").innerHTML = "";
 			Recipe.forEach(element => {
-				addRecipeTableItem(element.recipeId, element.username, element.recipeName, element.description, element.ingredients, element.instructions, element.imageUrl, element.createdAt);
+				addRecipeTableItem(element.recipeId, element.username, element.category, element.recipeName, element.description, element.ingredients, element.instructions, element.imageUrl, element.createdAt);
 			});
 		}
 

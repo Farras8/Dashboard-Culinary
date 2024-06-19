@@ -407,6 +407,10 @@ body {
 	flex-grow: 1;
 	flex-basis: 500px;
 }
+.table-data .order th {
+	padding: 20px ;
+	text-align: center;
+}
 #content main .table-data .order table {
 	width: 100%;
 	border-collapse: collapse;
