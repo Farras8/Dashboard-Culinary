@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 
     <title>AdminHub</title>
 </head>
+
 <body>
 
     <!-- SIDEBAR -->
     <section id="sidebar">
-		<a href="#" class="brand">
-			<span class="text">KING CULINARY</span>
-		</a>
-		<a href="" class="img-brand">
-			<img src="img/King_Culinary_Logo-removebg-preview.png">
-		</a>
+        <a href="#" class="brand">
+            <span class="text">KING CULINARY</span>
+        </a>
+        <a href="" class="img-brand">
+            <img src="img/King_Culinary_Logo-removebg-preview.png">
+        </a>
         <ul class="side-menu top">
             <li>
                 <a href="index.html" class="no-active">
-                    <i class='bx bxs-dashboard' ></i>
+                    <i class='bx bxs-dashboard'></i>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
@@ -35,33 +38,33 @@
             </li>
             <li>
                 <a href="foodRecipe.html" class="no-active">
-                    <i class='bx bxs-food-menu' ></i>
+                    <i class='bx bxs-food-menu'></i>
                     <span class="text">Food Recipe</span>
                 </a>
             </li>
             <li>
                 <a href="comment.html" class="no-active">
-                    <i class='bx bxs-comment' ></i>
+                    <i class='bx bxs-comment'></i>
                     <span class="text">Comment</span>
                 </a>
             </li>
             <li>
                 <a href="user.html" class="no-active">
-                    <i class='bx bxs-user' ></i>
+                    <i class='bx bxs-user'></i>
                     <span class="text">User</span>
                 </a>
             </li>
             <li>
                 <a href="admin.html" class="no-active">
-                    <i class='bx bxs-user-circle' ></i>
+                    <i class='bx bxs-user-circle'></i>
                     <span class="text">Admin</span>
                 </a>
             </li>
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="login.html" class="logout" >
-                    <i class='bx bx-log-in' ></i>
+                <a href="login.html" class="logout">
+                    <i class='bx bx-log-in'></i>
                     <span class="text">Logout</span>
                 </a>
             </li>
@@ -73,13 +76,13 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-            <i class='bx bx-menu' ></i>
+            <i class='bx bx-menu'></i>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
-			<div class="hiAdmin">
-				<i class='bx bx-user'></i>
-				<h6 class="AdminName">Admin</h6>
-			</div>
+            <div class="hiAdmin">
+                <i class='bx bx-user'></i>
+                <h6 class="AdminName">Admin</h6>
+            </div>
         </nav>
         <!-- NAVBAR -->
 
@@ -93,14 +96,16 @@
                             <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Add Categories
                             </button>
-                              
+
                             <!-- Modal add-->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category Recipe</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form id="recipe-form">
@@ -114,31 +119,38 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="description" class="form-label">Description</label>
-                                                    <textarea class="form-control" id="description" rows="3" required></textarea>
+                                                    <textarea class="form-control" id="description" rows="3"
+                                                        required></textarea>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button id="submitcategory" type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button id="submitcategory" type="submit" class="btn btn-primary">Save
+                                                changes</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Modal edit -->
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Category Recipe</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Category Recipe
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form id="edit-recipe-form">
                                                 <div class="mb-3">
                                                     <label for="edit-category-id" class="form-label">Category ID</label>
-                                                    <input type="text" class="form-control" id="edit-category-id" required readonly>
+                                                    <input type="text" class="form-control" id="edit-category-id"
+                                                        required readonly>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="edit-cat-name" class="form-label">Category Name</label>
@@ -146,13 +158,16 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="edit-description" class="form-label">Description</label>
-                                                    <textarea class="form-control" id="edit-description" rows="3" required></textarea>
+                                                    <textarea class="form-control" id="edit-description" rows="3"
+                                                        required></textarea>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button id="savechanges" type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button id="savechanges" type="submit" class="btn btn-primary">Save
+                                                changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -166,9 +181,11 @@
                 <div class="order">
                     <div class="head">
                         <h3>Categories</h3>
-                        <i class='bx bx-search' ></i>
-                        <i class='bx bx-filter' ></i>
-                    </div>
+                        <div class="search-wrapper">
+                            <input type="text" id="search-input" placeholder="Search ">
+                            <i class='bx bx-search'></i>
+                        </div>
+                    </div>                    
                     <table>
                         <thead>
                             <tr>
@@ -187,8 +204,10 @@
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
 
     <script type="module">
@@ -197,7 +216,7 @@
         import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
-      
+
         // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
@@ -208,13 +227,13 @@
             messagingSenderId: "1096190427358",
             appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
         };
-      
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
         // Add Category Recipe
-        document.getElementById("submitcategory").addEventListener("click", function() {
+        document.getElementById("submitcategory").addEventListener("click", function () {
             let catId = document.getElementById("category-id").value;
             let catName = document.getElementById("cat-name").value;
             let desc = document.getElementById("description").value;
@@ -238,7 +257,7 @@
         });
 
         // Update Category Recipe
-        document.getElementById("savechanges").addEventListener("click", function() {
+        document.getElementById("savechanges").addEventListener("click", function () {
             let catId = document.getElementById("edit-category-id").value;
             let catName = document.getElementById("edit-cat-name").value;
             let desc = document.getElementById("edit-description").value;
@@ -291,7 +310,7 @@
             editButton.classList.add("btn-edit");
             editButton.setAttribute("data-bs-toggle", "modal");
             editButton.setAttribute("data-bs-target", "#exampleModal2");
-            editButton.onclick = function() {
+            editButton.onclick = function () {
                 document.getElementById("edit-category-id").value = catId;
                 document.getElementById("edit-cat-name").value = catName;
                 document.getElementById("edit-description").value = desc;
@@ -301,11 +320,11 @@
             let deleteButton = document.createElement("button");
             deleteButton.innerHTML = "Delete";
             deleteButton.classList.add("btn-del");
-            deleteButton.onclick = function() {
+            deleteButton.onclick = function () {
                 if (confirm("Are you sure you want to delete this category?")) {
-					deleteCategory(catId); // Call delete function
-					trow.remove(); // This line will remove the row from the table
-				}
+                    deleteCategory(catId); // Call delete function
+                    trow.remove(); // This line will remove the row from the table
+                }
             };
 
             td4.appendChild(editButton);
@@ -345,23 +364,50 @@
             });
         }
 
+        document.getElementById('search-input').addEventListener('keyup', function () {
+            let filter = this.value.toUpperCase();
+            let table = document.querySelector('table');
+            let tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td');
+                let showRow = false;
+                for (let j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        let txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            showRow = true;
+                            break;
+                        }
+                    }
+                }
+                if (showRow) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        });
+
+
         // Initialize Data Fetch
         window.onload = getAllData;
     </script>
-    	   <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const adminName = localStorage.getItem("adminUsername");
-                if (adminName) {
-                    document.querySelector(".AdminName").textContent = adminName;
-                } else {
-                    alert("No admin logged in.");
-                    window.location.href = "login.html";
-                }
-                document.querySelector(".logout").addEventListener("click", function() {
-                    localStorage.removeItem("adminUsername");
-                    window.location.href = "login.html";
-                });
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const adminName = localStorage.getItem("adminUsername");
+            if (adminName) {
+                document.querySelector(".AdminName").textContent = adminName;
+            } else {
+                alert("No admin logged in.");
+                window.location.href = "login.html";
+            }
+            document.querySelector(".logout").addEventListener("click", function () {
+                localStorage.removeItem("adminUsername");
+                window.location.href = "login.html";
             });
-        </script>
+        });
+    </script>
 </body>
+
 </html>

@@ -219,11 +219,13 @@
 
 			<div class="table-data">
 				<div class="order">
-					<div class="head">
-						<h3>Food Recipe</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
+                    <div class="head">
+                        <h3>Categories</h3>
+                        <div class="search-wrapper">
+                            <input type="text" id="search-input" placeholder="Search ">
+                            <i class='bx bx-search'></i>
+                        </div>
+                    </div> 
 					<table>
 						<thead>
 							<tr>
@@ -360,6 +362,7 @@
 			// Close the modal
 			const modal = bootstrap.Modal.getInstance(document.getElementById('addRecipeModail'));
 			modal.hide();
+			location.reload();
 		});
 
         
@@ -505,6 +508,31 @@
 				console.log(error);
 			});
 		}
+
+		document.getElementById('search-input').addEventListener('keyup', function () {
+            let filter = this.value.toUpperCase();
+            let table = document.querySelector('table');
+            let tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td');
+                let showRow = false;
+                for (let j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        let txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            showRow = true;
+                            break;
+                        }
+                    }
+                }
+                if (showRow) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        });
 
 		// Initialize Data Fetch
 		window.onload = getAllData(), fetchCategories(), fetchCategoriesEdit();

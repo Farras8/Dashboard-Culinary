@@ -111,15 +111,15 @@
 											<input type="text" class="form-control" id="comment-id" required>
 											</div>
 											<div class="mb-3">
-												<label for="recipe-id" class="form-label">Recipe ID</label>
-												<select class="form-select" id="recipe-id" required>
-													<!-- Options will be populated dynamically from Firebase -->
+												<label for="recipe-select" class="form-label">Recipe </label>
+												<select class="form-select" id="recipe-select" required>
+													
 												</select>
 											</div>
 											<div class="mb-3">
-												<label for="user-id" class="form-label">Recipe ID</label>
-												<select class="form-select" id="user-id" required>
-													<!-- Options will be populated dynamically from Firebase -->
+												<label for="user-select" class="form-label">User</label>
+												<select class="form-select" id="user-select" required>
+													
 												</select>
 											</div>
 											<div class="mb-3">
@@ -155,15 +155,15 @@
 											<input type="text" class="form-control" id="edit-comment-id" required>
 											</div>
 											<div class="mb-3">
-												<label for="edit-recipe-id" class="form-label">Recipe ID</label>
-												<select class="form-select" id="edit-recipe-id" required>
-													<!-- Options will be populated dynamically from Firebase -->
+												<label for="edit-recipe-select" class="form-label">Recipe </label>
+												<select class="form-select" id="edit-recipe-select" required>
+													
 												</select>
 											</div>
 											<div class="mb-3">
-												<label for="edit-user-id" class="form-label">Recipe ID</label>
-												<select class="form-select" id="edit-user-id" required>
-													<!-- Options will be populated dynamically from Firebase -->
+												<label for="edit-user-select" class="form-label">User</label>
+												<select class="form-select" id="edit-user-select" required>
+													
 												</select>
 											</div>
 											<div class="mb-3">
@@ -191,16 +191,18 @@
 				<div class="table-data">
 					<div class="order">
 						<div class="head">
-							<h3>Comments</h3>
-							<i class='bx bx-search' ></i>
-							<i class='bx bx-filter' ></i>
-						</div>
+							<h3>Categories</h3>
+							<div class="search-wrapper">
+								<input type="text" id="search-input" placeholder="Search ">
+								<i class='bx bx-search'></i>
+							</div>
+						</div> 
 						<table>
 							<thead>
 								<tr>
 									<th>Comment ID</th>
-									<th>Recipe ID</th>
-									<th>User ID</th>
+									<th>Recipe</th>
+									<th>User</th>
 									<th>Comment</th>
 									<th>Created At</th>
 									<th>Actions</th>
@@ -240,18 +242,127 @@
 		const app = initializeApp(firebaseConfig);
 		const database = getDatabase(app);
 
+		function fetchAddRecipe(){
+			const recipeSelect = document.getElementById('recipe-select');
+
+			if(!recipeSelect){
+				console.error('Recipe select element not found');
+				return;
+			}
+
+			console.log('Fetching Recipes...');
+			get(child(ref(database), 'recipes')).then(snapshot => {
+				if (snapshot.exists()) {
+					console.log('Recipes fetched successfully');
+					snapshot.forEach(childSnapshot => {
+						console.log('Adding recipe:', childSnapshot.val().recipeName);
+						let option = document.createElement('option');
+						option.value = childSnapshot.val().recipeName;
+						option.textContent = childSnapshot.val().recipeName;
+						recipeSelect.appendChild(option);
+					});
+				} else {
+					console.log('No recipe found');
+				}
+			}).catch(error => {
+				console.error('Error fetching recipe:', error);
+			});
+		}
+
+		function fetchRecipesEdit() {
+			const recipeSelect = document.getElementById('edit-recipe-select');
+			
+			if (!recipeSelect) {
+				console.error('Recipe select element not found');
+				return;
+			}
+
+			console.log('Fetching recipes...');
+			get(child(ref(database), 'recipe')).then(snapshot => {
+				if (snapshot.exists()) {
+					console.log('Recipes fetched successfully');
+					snapshot.forEach(childSnapshot => {
+						console.log('Adding recipe:', childSnapshot.val().recipeName);
+						let option = document.createElement('option');
+						option.value = childSnapshot.val().recipeName;
+						option.textContent = childSnapshot.val().recipeName;
+						recipeSelect.appendChild(option);
+					});
+				} else {
+					console.log('No recipes found');
+				}
+			}).catch(error => {
+				console.error('Error fetching recipes:', error);
+			});
+		}
+
+		function fetchAddUser(){
+			const userSelect = document.getElementById('user-select');
+
+			if(!userSelect){
+				console.error('user select element not found');
+				return;
+			}
+
+			console.log('Fetching users...');
+			get(child(ref(database), 'user')).then(snapshot => {
+				if (snapshot.exists()) {
+					console.log('users fetched successfully');
+					snapshot.forEach(childSnapshot => {
+						console.log('Adding user:', childSnapshot.val().username);
+						let option = document.createElement('option');
+						option.value = childSnapshot.val().username;
+						option.textContent = childSnapshot.val().username;
+						userSelect.appendChild(option);
+					});
+				} else {
+					console.log('No user found');
+				}
+			}).catch(error => {
+				console.error('Error fetching user:', error);
+			});
+		}
+
+		function fetchUserEdit() {
+			const userSelect = document.getElementById('edit-user-select');
+			
+			if (!userSelect) {
+				console.error('user select element not found');
+				return;
+			}
+
+			console.log('Fetching users...');
+			get(child(ref(database), 'user')).then(snapshot => {
+				if (snapshot.exists()) {
+					console.log('users fetched successfully');
+					snapshot.forEach(childSnapshot => {
+						console.log('Adding user:', childSnapshot.val().username);
+						let option = document.createElement('option');
+						option.value = childSnapshot.val().username;
+						option.textContent = childSnapshot.val().username;
+						userSelect.appendChild(option);
+					});
+				} else {
+					console.log('No users found');
+				}
+			}).catch(error => {
+				console.error('Error fetching users:', error);
+			});
+		}
+
+
 		// Add Comment
 		document.getElementById("buttonAdd").addEventListener("click", function() {
 			let commentId = document.getElementById("comment-id").value;
-			let recipeId = document.getElementById("recipe-id").value;
-			let userId = document.getElementById("user-id").value;
+			let recipe = document.getElementById("recipe-select").value;
+			let user = document.getElementById("user-select").value;
 			let comment = document.getElementById("comment-text").value;
 			let dateCreate = document.getElementById("created-at").value;
 
 			set(ref(database, "comment/" + commentId), {
 				commentId: Number(commentId),
-				recipeId: Number(recipeId),
-				userId: Number(userId),
+				recipe: recipe,
+				user: user,
 				comment: comment,
 				dateCreate: dateCreate
 			}).then(() => {
@@ -266,20 +377,21 @@
 			// Close the modal
 			const modal = bootstrap.Modal.getInstance(document.getElementById('addCommentModal'));
 			modal.hide();
+			location.reload();
 		});
 
 		// Update Comment
 		document.getElementById("buttonEdit").addEventListener("click", function() {
 			let commentId = document.getElementById("edit-comment-id").value;
-			let recipeId = document.getElementById("edit-recipe-id").value;
-			let userId = document.getElementById("edit-user-id").value;
+			let recipe = document.getElementById("edit-recipe-select").value;
+			let user = document.getElementById("edit-user-select").value;
 			let comment = document.getElementById("edit-comment-text").value;
 			let dateCreate = document.getElementById("edit-created-at").value;
 
 			update(ref(database, "comment/" + commentId), {
 				commentId: Number(commentId),
-				recipeId: Number(recipeId),
-				userId: Number(userId),
+				recipe: recipe,
+				userId: user,
 				comment: comment,
 				dateCreate: dateCreate
 			}).then(() => {
@@ -309,7 +421,7 @@
 		}
 
 		// Add comment Table Item
-		function addCommentTableItem(commentId, recipeId, userId, comment, dateCreate) {
+		function addCommentTableItem(commentId, recipe, user, comment, dateCreate) {
 			let trow = document.createElement("tr");
 			let td1 = document.createElement("td");
 			let td2 = document.createElement("td");
@@ -319,8 +431,8 @@
 			let td6 = document.createElement("td");
 
 			td1.innerHTML = commentId;
-			td2.innerHTML = recipeId;
-			td3.innerHTML = userId;
+			td2.innerHTML = recipe;
+			td3.innerHTML = user;
 			td4.innerHTML = comment;
 			td5.innerHTML = dateCreate;
 
@@ -332,8 +444,8 @@
 			editButton.setAttribute("data-bs-target", "#editCommentModal");
 			editButton.onclick = function() {
 				document.getElementById("edit-comment-id").value = commentId;
-				document.getElementById("edit-recipe-id").value = recipeId;
-				document.getElementById("edit-user-id").value = userId;
+				document.getElementById("edit-recipe-select").value = recipe;
+				document.getElementById("edit-user-select").value = user;
 				document.getElementById("edit-comment-text").value = comment;
 				document.getElementById("edit-created-at").value = dateCreate;
 			};
@@ -366,7 +478,7 @@
 		function addAllCommentTable(comment) {
 			document.getElementById("commentTableBody").innerHTML = "";
 			comment.forEach(element => {
-				addCommentTableItem(element.commentId, element.recipeId, element.userId, element.comment, element.dateCreate);
+				addCommentTableItem(element.commentId, element.recipe, element.user, element.comment, element.dateCreate);
 			});
 		}
 
@@ -388,8 +500,33 @@
 			});
 		}
 
+		document.getElementById('search-input').addEventListener('keyup', function () {
+            let filter = this.value.toUpperCase();
+            let table = document.querySelector('table');
+            let tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td');
+                let showRow = false;
+                for (let j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        let txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            showRow = true;
+                            break;
+                        }
+                    }
+                }
+                if (showRow) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        });
+
 		// Initialize Data Fetch
-		window.onload = getAllData();
+		window.onload = getAllData(), fetchAddRecipe(), fetchRecipesEdit(),fetchAddUser(), fetchUserEdit();
 		</script>
 		<script src="script.js"></script>
 		<script>

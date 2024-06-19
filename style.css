@@ -325,20 +325,25 @@ body {
 
 
 #content main .box-info {
-	display: grid;
-	justify-content: center;
-	align-items: center;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	grid-gap: 24px;
-	margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 24px;
+    margin-top: 36px;
+    justify-items: center; 
 }
+
 #content main .box-info li {
-	padding: 24px;
-	background: var(--light);
-	border-radius: 20px;
-	display: flex;
-	align-items: center;
-	grid-gap: 24px;
+	width: 300px;
+    padding: 24px;
+    background: var(--light);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    grid-gap: 24px;
+}
+#content main .box-info li .text h3{
+	text-align: center;
 }
 #content main .box-info li .bx {
 	width: 80px;
@@ -361,6 +366,14 @@ body {
 	background: var(--light-orange);
 	color: var(--orange);
 }
+#content main .box-info li:nth-child(4) .bx {
+	background: var(--light-blue);
+	color: var(--red);
+}
+#content main .box-info li:nth-child(5) .bx {
+	background: var(--dark-grey);
+	color: var(--blue);
+}
 #content main .box-info li .text h3 {
 	font-size: 24px;
 	font-weight: 600;
@@ -373,6 +386,24 @@ body {
 
 
 
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-wrapper input {
+	height: 50px;
+    padding-left: 30px; 
+	border-radius: 20px;
+}
+
+.search-wrapper .bx-search {
+    position: absolute;
+    left: 10px; 
+    color: gray;
+    pointer-events: none; 
+}
 
 #content main .table-data {
 	display: flex;
@@ -491,8 +522,42 @@ body {
 }
 /* MAIN */
 /* CONTENT */
+@media(max-width: 1300px){
 
+    #content main .box-info {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    }
+	.search-wrapper input {
+		height: 40px;
+		padding-left: 30px; 
+		border-radius: 20px;
+	}
+}
 
+@media(max-width: 1000px){
+	#sidebar {
+        left: -280px;
+    }
+
+    #content {
+        width: 100%;
+        left: 0;
+    }
+
+    #content nav .bx-menu {
+        display: block;
+    }
+    #content main .box-info {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    }
+	.search-wrapper input {
+		margin-right: 30px;
+		width: 180px;
+		height: 30px;
+		padding: 30px; 
+		border-radius: 20px;
+	}
+}
 
 @media (max-width: 768px) {
     #sidebar {
@@ -511,6 +576,9 @@ body {
     .table-data .order td {
         padding: 50px ;
 		text-align: center;
+    }
+	#content main .box-info {
+        grid-template-columns: 1fr;
     }
 }
 
