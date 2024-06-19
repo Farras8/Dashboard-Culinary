@@ -115,17 +115,14 @@
                                           <label for="user-name" class="form-label">User Name</label>
                                           <input type="text" class="form-control" id="user-name" required>
                                         </div>
-										<div class="mb-3">
-											<label for="category" class="form-label">Category</label>
-											<select class="form-select" id="category" required>
-												<!-- Options will be populated dynamically from Firebase -->
-											</select>
-										</div>
-										
                                         <div class="mb-3">
                                           <label for="recipe-name" class="form-label">Recipe Name</label>
                                           <input type="text" class="form-control" id="recipe-name" required>
                                         </div>
+										<div class="mb-3">
+										   <label for="category-select" class="form-label">Category</label>
+										   <select  class="form-control" id="category-select" required></select>
+										</div>
                                         <div class="mb-3">
                                           <label for="description" class="form-label">Description</label>
                                           <textarea class="form-control" id="description" rows="3" required></textarea>
@@ -174,17 +171,14 @@
                                           <label for="user-name" class="form-label">User Name</label>
                                           <input type="text" class="form-control" id="edit-user-name" required>
                                         </div>
-										<div class="mb-3">
-											<label for="edit-category" class="form-label">Category</label>
-											<select class="form-select" id="edit-category" required>
-												<!-- Options will be populated dynamically from Firebase -->
-											</select>
-										</div>
-										
                                         <div class="mb-3">
                                           <label for="recipe-name" class="form-label">Recipe Name</label>
                                           <input type="text" class="form-control" id="edit-recipe-name" required>
                                         </div>
+										<div class="mb-3">
+											<label for="category-select" class="form-label">Category</label>
+											<select  class="form-control" id="edit-category-select" required></select>
+										 </div>
                                         <div class="mb-3">
                                           <label for="description" class="form-label">Description</label>
                                           <textarea class="form-control" id="edit-description" rows="3" required></textarea>
@@ -235,8 +229,8 @@
 							<tr>
 								<th>Recipe ID</th>
 								<th>User Name</th>
-								<th>Category</th>
 								<th>Recipe Name</th>
+								<th>Category</th>
                                 <th>Description</th>
                                 <th>Ingredients</th>
                                 <th>Instruction</th>
@@ -277,12 +271,67 @@
         const app = initializeApp(firebaseConfig);
 		const database = getDatabase(app);
 
+		// Function to fetch categories and populate the select dropdown
+		function fetchCategories() {
+			const categorySelect = document.getElementById('category-select');
+			
+			if (!categorySelect) {
+				console.error('Category select element not found');
+				return;
+			}
+
+			console.log('Fetching categories...');
+			get(child(ref(database), 'category')).then(snapshot => {
+				if (snapshot.exists()) {
+					console.log('Categories fetched successfully');
+					snapshot.forEach(childSnapshot => {
+						console.log('Adding category:', childSnapshot.val().catName);
+						let option = document.createElement('option');
+						option.value = childSnapshot.val().catName;
+						option.textContent = childSnapshot.val().catName;
+						categorySelect.appendChild(option);
+					});
+				} else {
+					console.log('No categories found');
+				}
+			}).catch(error => {
+				console.error('Error fetching categories:', error);
+			});
+		}
+
+		function fetchCategoriesEdit() {
+			const categorySelect = document.getElementById('edit-category-select');
+			
+			if (!categorySelect) {
+				console.error('Category select element not found');
+				return;
+			}
+
+			console.log('Fetching categories...');
+			get(child(ref(database), 'category')).then(snapshot => {
+				if (snapshot.exists()) {
+					console.log('Categories fetched successfully');
+					snapshot.forEach(childSnapshot => {
+						console.log('Adding category:', childSnapshot.val().catName);
+						let option = document.createElement('option');
+						option.value = childSnapshot.val().catName;
+						option.textContent = childSnapshot.val().catName;
+						categorySelect.appendChild(option);
+					});
+				} else {
+					console.log('No categories found');
+				}
+			}).catch(error => {
+				console.error('Error fetching categories:', error);
+			});
+		}
+
 		// Add recipe
 		document.getElementById("buttonAdd").addEventListener("click", function() {
 			let recipeId = document.getElementById('recipe-id').value;
-			let category = document.getElementById('category').value;
 			let username = document.getElementById('user-name').value;
 			let recipeName = document.getElementById('recipe-name').value;
+			let category = document.getElementById('category-select').value;
 			let description = document.getElementById('description').value;
 			let ingredients = document.getElementById('ingredients').value;
 			let instructions = document.getElementById('instructions').value;
@@ -292,8 +341,8 @@
 			set(ref(database, "recipes/" + recipeId), {
 				recipeId: Number(recipeId),
 				username: username,
-				category: category,
 				recipeName: recipeName,
+				category: category,
 				description: description,
 				ingredients: ingredients,
 				instructions: instructions,
@@ -317,9 +366,9 @@
         // Update recipe
 		document.getElementById("buttonEdit").addEventListener("click", function() {
 			let recipeId = document.getElementById('edit-recipe-id').value;
-			let category = document.getElementById('edir-category').value;
 			let username = document.getElementById('edit-user-name').value;
 			let recipeName = document.getElementById('edit-recipe-name').value;
+			let category = document.getElementById('edit-category-select').value;
 			let description = document.getElementById('edit-description').value;
 			let ingredients = document.getElementById('edit-ingredients').value;
 			let instructions = document.getElementById('edit-instructions').value;
@@ -329,8 +378,8 @@
 			update(ref(database, "recipes/" + recipeId), {
 				recipeId: Number(recipeId),
 				username: username,
-				category: category,
 				recipeName: recipeName,
+				category: category,
 				description: description,
 				ingredients: ingredients,
 				instructions: instructions,
@@ -363,7 +412,7 @@
 		}
 
 		// Add user Table Item
-		function addRecipeTableItem(recipeId, username, category, recipeName, description, ingredients, instructions, imageUrl, createdAt) {
+		function addRecipeTableItem(recipeId, username, recipeName, category, description, ingredients, instructions, imageUrl, createdAt) {
 			let trow = document.createElement("tr");
 			let td1 = document.createElement("td");
 			let td2 = document.createElement("td");
@@ -378,8 +427,8 @@
 
 			td1.innerHTML = recipeId;
 			td2.innerHTML = username;
-			td3.innerHTML = category;
-			td4.innerHTML = recipeName;
+			td3.innerHTML = recipeName;
+			td4.innerHTML = category;
 			td5.innerHTML = description;
 			td6.innerHTML = ingredients;
 			td7.innerHTML = instructions;
@@ -395,7 +444,6 @@
 			editButton.onclick = function() {
 				 document.getElementById('edit-recipe-id').value = recipeId;
 				 document.getElementById('edit-user-name').value = username;
-				 document.getElementById('edit-category').value = category;
 				 document.getElementById('edit-recipe-name').value = recipeName;
 				 document.getElementById('edit-description').value = description;
 				 document.getElementById('edit-ingredients').value = ingredients;
@@ -436,7 +484,7 @@
 		function addAllRecipeTable(Recipe) {
 			document.getElementById("recipeTBody").innerHTML = "";
 			Recipe.forEach(element => {
-				addRecipeTableItem(element.recipeId, element.username, element.category, element.recipeName, element.description, element.ingredients, element.instructions, element.imageUrl, element.createdAt);
+				addRecipeTableItem(element.recipeId, element.username, element.recipeName, element.category, element.description, element.ingredients, element.instructions, element.imageUrl, element.createdAt);
 			});
 		}
 
@@ -459,7 +507,7 @@
 		}
 
 		// Initialize Data Fetch
-		window.onload = getAllData();
+		window.onload = getAllData(), fetchCategories(), fetchCategoriesEdit();
 	</script>
 		   <script>
 			document.addEventListener("DOMContentLoaded", function() {
