@@ -128,7 +128,7 @@
                         </div>
                         <div class="mb-3">
                           <label for="profile-picture" class="form-label">Profile Picture URL</label>
-                          <input type="url" class="form-control" id="profile-picture" required>
+                          <input type="file" class="form-control" id="profile-picture" required>
                         </div>
                         <div class="mb-3">
                           <label for="bio" class="form-label">Bio</label>
@@ -177,7 +177,7 @@
                         </div>
                         <div class="mb-3">
                           <label for="profile-picture" class="form-label">Profile Picture URL</label>
-                          <input type="url" class="form-control" id="edit-profile-picture" required>
+                          <input type="file" class="form-control" id="edit-profile-picture" required>
                         </div>
                         <div class="mb-3">
                           <label for="bio" class="form-label">Bio</label>
@@ -235,6 +235,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/firebase@9.0.1/firebase-app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/firebase@9.0.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
@@ -243,6 +244,7 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
     // Firebase configuration
     const firebaseConfig = {
@@ -258,6 +260,7 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
+    const storage = getStorage(app);
 
     // Add user
     document.getElementById("buttonAdd").addEventListener("click", function () {
@@ -265,28 +268,38 @@
       let username = document.getElementById('username').value;
       let email = document.getElementById('email').value;
       let password = document.getElementById('password').value;
-      let profilePicture = document.getElementById('profile-picture').value;
       let bio = document.getElementById('bio').value;
       let createdAt = document.getElementById('created-at').value;
+      let profilePicture = document.getElementById('profile-picture').files[0];
 
-      set(ref(database, "user/" + userId), {
-        userId: Number(userId),
-        username: username,
-        email: email,
-        password: password,
-        profilePicture: profilePicture,
-        bio: bio,
-        createdAt: createdAt
-      }).then(() => {
-        // Data saved successfully
-        alert("User Successfully Added!");
-        getAllData(); // Refresh the table data
-      }).catch((error) => {
-        alert("Failed to add user!");
-        console.log(error);
-      });
+      const userRef = ref(database, "user/" + userId);
 
-      // Close the modal
+      if (profilePicture) {
+        const storageReference = storageRef(storage, 'profilePictures/' + userId);
+        uploadBytes(storageReference, profilePicture).then((snapshot) => {
+          getDownloadURL(snapshot.ref).then((url) => {
+            set(userRef, {
+              userId: Number(userId),
+              username: username,
+              email: email,
+              password: password,
+              profilePicture: url, // Save the URL
+              bio: bio,
+              createdAt: createdAt
+            }).then(() => {
+              alert("User Successfully Added!");
+              getAllData();
+            }).catch((error) => {
+              alert("Failed to add user!");
+              console.log(error);
+            });
+          });
+        }).catch((error) => {
+          alert("Failed to upload profile picture!");
+          console.log(error);
+        });
+      }
+
       const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
       modal.hide();
     });
@@ -298,28 +311,38 @@
       let username = document.getElementById('edit-username').value;
       let email = document.getElementById('edit-email').value;
       let password = document.getElementById('edit-password').value;
-      let profilePicture = document.getElementById('edit-profile-picture').value;
       let bio = document.getElementById('edit-bio').value;
       let createdAt = document.getElementById('edit-created-at').value;
+      let profilePicture = document.getElementById('edit-profile-picture').files[0]; // Get the file
 
-      update(ref(database, "user/" + userId), {
-        userId: Number(userId),
-        username: username,
-        email: email,
-        password: password,
-        profilePicture: profilePicture,
-        bio: bio,
-        createdAt: createdAt
-      }).then(() => {
-        // Data updated successfully
-        alert("user Successfully Updated!");
-        getAllData(); // Refresh the table data
-      }).catch((error) => {
-        alert("Failed to update user!");
-        console.log(error);
-      });
+      const userRef = ref(database, "user/" + userId);
 
-      // Close the modal
+      if (profilePicture) {
+        const storageReference = storageRef(storage, 'profilePictures/' + userId);
+        uploadBytes(storageReference, profilePicture).then((snapshot) => {
+          getDownloadURL(snapshot.ref).then((url) => {
+            update(userRef, {
+              userId: Number(userId),
+              username: username,
+              email: email,
+              password: password,
+              profilePicture: url, // Save the URL
+              bio: bio,
+              createdAt: createdAt
+            }).then(() => {
+              alert("User Successfully Updated!");
+              getAllData();
+            }).catch((error) => {
+              alert("Failed to update user!");
+              console.log(error);
+            });
+          });
+        }).catch((error) => {
+          alert("Failed to upload profile picture!");
+          console.log(error);
+        });
+      }
+
       const modal = bootstrap.Modal.getInstance(document.getElementById('editUserModal'));
       modal.hide();
     });
@@ -352,7 +375,7 @@
       td2.innerHTML = username;
       td3.innerHTML = email;
       td4.innerHTML = password;
-      td5.innerHTML = profilePicture;
+      td5.innerHTML = `<img src="${profilePicture}" alt="Profile Picture" style="width: 50px; height: 50px;">`; // Display the image
       td6.innerHTML = bio;
       td7.innerHTML = createdAt;
 
@@ -367,7 +390,7 @@
         document.getElementById('edit-username').value = username;
         document.getElementById('edit-email').value = email;
         document.getElementById('edit-password').value = password;
-        document.getElementById('edit-profile-picture').value = profilePicture;
+        document.getElementById('edit-profile-picture').value = ''; // Clear the file input
         document.getElementById('edit-bio').value = bio;
         document.getElementById('edit-created-at').value = createdAt;
       };
