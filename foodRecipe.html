@@ -93,12 +93,12 @@
 					<h1>Food Recipe</h1>
 					<ul class="breadcrumb">
 						<li>
-							<button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addRecipeModail">
+							<button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addRecipeModal">
                                 Add Food Recipe
                               </button>
                               
                               <!-- Modal add -->
-                              <div class="modal fade" id="addRecipeModail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="addRecipeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -136,8 +136,8 @@
                                           <textarea class="form-control" id="instructions" rows="3" required></textarea>
                                         </div>
                                         <div class="mb-3">
-                                          <label for="image-url" class="form-label">Image URL</label>
-                                          <input type="url" class="form-control" id="image-url" required>
+                                          <label for="image-file" class="form-label">Image</label>
+                                          <input type="file" class="form-control" id="image-file" required>
                                         </div>
                                         <div class="mb-3">
                                           <label for="created-at" class="form-label">Created At</label>
@@ -192,8 +192,8 @@
                                           <textarea class="form-control" id="edit-instructions" rows="3" required></textarea>
                                         </div>
                                         <div class="mb-3">
-                                          <label for="image-url" class="form-label">Image URL</label>
-                                          <input type="url" class="form-control" id="edit-image-url" required>
+                                          <label for="image-file" class="form-label">Image</label>
+                                          <input type="file" class="form-control" id="edit-image-file" required>
                                         </div>
                                         <div class="mb-3">
                                           <label for="created-at" class="form-label">Created At</label>
@@ -252,11 +252,14 @@
 	<!-- CONTENT -->
 	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"></script>
 	<script src="script.js"></script>
 	<script type="module">
 		// Import the functions you need from the SDKs you need
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 		import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+		import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
 
         // Firebase configuration
         const firebaseConfig = {
@@ -272,6 +275,14 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 		const database = getDatabase(app);
+		const storage = getStorage(app);
+
+		// Function to upload image to Firebase Storage and get the URL
+		async function uploadImage(file) {
+			const storageRef = sRef(storage, 'images/' + file.name);
+			await uploadBytes(storageRef, file);
+			return await getDownloadURL(storageRef);
+		}
 
 		// Function to fetch categories and populate the select dropdown
 		function fetchCategories() {
@@ -337,32 +348,42 @@
 			let description = document.getElementById('description').value;
 			let ingredients = document.getElementById('ingredients').value;
 			let instructions = document.getElementById('instructions').value;
-			let imageUrl = document.getElementById('image-url').value;
 			let createdAt = document.getElementById('created-at').value;
+			let imageFile = document.getElementById('image-file').files[0];
 
-			set(ref(database, "recipes/" + recipeId), {
-				recipeId: Number(recipeId),
-				username: username,
-				recipeName: recipeName,
-				category: category,
-				description: description,
-				ingredients: ingredients,
-				instructions: instructions,
-				imageUrl: imageUrl,
-				createdAt: createdAt
-			}).then(() => {
-				// Data saved successfully
-				alert("Recipe Successfully Added!");
-				getAllData(); // Refresh the table data
-			}).catch((error) => {
-				alert("Failed to add recipe!");
-				console.log(error);
-			});
+			const recipeRef = ref(database, "recipes/" + recipeId);
+
+			if (imageFile) {
+				const storageReference = storageRef(storage, 'recipePictures/' + recipeId);
+				uploadBytes(storageReference, imageFile).then((snapshot) => {
+					getDownloadURL(snapshot.ref).then((url) => {
+						set(recipeRef, {
+							recipeId: Number(recipeId),
+							username: username,
+							recipeName: recipeName,
+							category: category,
+							description: description,
+							ingredients: ingredients,
+							instructions: instructions,
+							imageFile: url,
+							createdAt: createdAt
+						}).then(() => {
+							alert("Recipe Successfully Added!");
+							getAllData();
+						}).catch((error) => {
+							alert("Failed to add recipe!");
+							console.log(error);
+						});
+					});
+				}).catch((error) => {
+					alert("Failed to upload picture!");
+					console.log(error);
+				});
+			}
 
 			// Close the modal
-			const modal = bootstrap.Modal.getInstance(document.getElementById('addRecipeModail'));
+			const modal = bootstrap.Modal.getInstance(document.getElementById('addRecipeModal'));
 			modal.hide();
-			location.reload();
 		});
 
         
@@ -375,33 +396,44 @@
 			let description = document.getElementById('edit-description').value;
 			let ingredients = document.getElementById('edit-ingredients').value;
 			let instructions = document.getElementById('edit-instructions').value;
-			let imageUrl = document.getElementById('edit-image-url').value;
 			let createdAt = document.getElementById('edit-created-at').value;
+			let imageFile = document.getElementById('edit-image-file').files[0];
 
-			update(ref(database, "recipes/" + recipeId), {
-				recipeId: Number(recipeId),
-				username: username,
-				recipeName: recipeName,
-				category: category,
-				description: description,
-				ingredients: ingredients,
-				instructions: instructions,
-				imageUrl: imageUrl,
-				createdAt: createdAt
-			}).then(() => {
-				// Data updated successfully
-				alert("Recipe Successfully Updated!");
-				getAllData(); // Refresh the table data
-			}).catch((error) => {
-				alert("Failed to update Recipe!");
-				console.log(error);
-			});
+			const recipeRef = ref(database, "recipes/" + recipeId);
+
+			if (imageFile) {
+				const storageReference = storageRef(storage, 'recipePictures/' + recipeId);
+				uploadBytes(storageReference, imageFile).then((snapshot) => {
+					getDownloadURL(snapshot.ref).then((url) => {
+						update(recipeRef, {
+							recipeId: Number(recipeId),
+							username: username,
+							recipeName: recipeName,
+							category: category,
+							description: description,
+							ingredients: ingredients,
+							instructions: instructions,
+							imageFile: url,
+							createdAt: createdAt
+						}).then(() => {
+							alert("Recipe Successfully Updated!");
+							getAllData();
+						}).catch((error) => {
+							alert("Failed to update recipe!");
+							console.log(error);
+						});
+					});
+				}).catch((error) => {
+					alert("Failed to upload picture!");
+					console.log(error);
+				});
+			}
 
 			// Close the modal
 			const modal = bootstrap.Modal.getInstance(document.getElementById('editRecipeModal'));
 			modal.hide();
 		});
-
+		
 		// Delete recipe
 		function deleteRecipe(recipeId) {
 			remove(ref(database, "recipes/" + recipeId)).then(() => {
@@ -415,7 +447,7 @@
 		}
 
 		// Add user Table Item
-		function addRecipeTableItem(recipeId, username, recipeName, category, description, ingredients, instructions, imageUrl, createdAt) {
+		function addRecipeTableItem(recipeId, username, recipeName, category, description, ingredients, instructions, imageFile, createdAt) {
 			let trow = document.createElement("tr");
 			let td1 = document.createElement("td");
 			let td2 = document.createElement("td");
@@ -435,7 +467,7 @@
 			td5.innerHTML = description;
 			td6.innerHTML = ingredients;
 			td7.innerHTML = instructions;
-			td8.innerHTML = imageUrl;
+			td8.innerHTML = `<img src="${imageFile}" alt="No image" style="width: 50px; height: 50px;">`; // Display the image
 			td9.innerHTML = createdAt;
 
 			// Create the Edit button
@@ -451,7 +483,7 @@
 				 document.getElementById('edit-description').value = description;
 				 document.getElementById('edit-ingredients').value = ingredients;
 				 document.getElementById('edit-instructions').value = instructions;
-				 document.getElementById('edit-image-url').value = imageUrl;
+				 document.getElementById('edit-image-file').value = imageFile;
 				 document.getElementById('edit-created-at').value= createdAt;
 			};
 
@@ -487,7 +519,7 @@
 		function addAllRecipeTable(Recipe) {
 			document.getElementById("recipeTBody").innerHTML = "";
 			Recipe.forEach(element => {
-				addRecipeTableItem(element.recipeId, element.username, element.recipeName, element.category, element.description, element.ingredients, element.instructions, element.imageUrl, element.createdAt);
+				addRecipeTableItem(element.recipeId, element.username, element.recipeName, element.category, element.description, element.ingredients, element.instructions, element.imageFile, element.createdAt);
 			});
 		}
 
