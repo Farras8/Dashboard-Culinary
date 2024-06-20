@@ -103,17 +103,20 @@
                                             <div class="mb-3">
                                                 <label for="admin-id" class="form-label">Admin ID</label>
                                                 <input type="text" class="form-control" id="admin-id" required>
+                                                <div id="admin-id-error" class="text-danger"></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="username" class="form-label">Username</label>
                                                 <input type="text" class="form-control" id="username" required>
+                                                <div id="username-error" class="text-danger"></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Password</label>
                                                 <input type="password" class="form-control" id="password" required>
+                                                <div id="password-error" class="text-danger"></div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div>                                    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button id="buttonAdd" type="button" class="btn btn-primary">Save changes</button>
@@ -135,17 +138,20 @@
                                             <div class="mb-3">
                                                 <label for="edit-admin-id" class="form-label">Admin ID</label>
                                                 <input type="text" class="form-control" id="edit-admin-id" required>
+                                                <div id="edit-admin-id-error" class="text-danger"></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="edit-username" class="form-label">Username</label>
                                                 <input type="text" class="form-control" id="edit-username" required>
+                                                <div id="edit-username-error" class="text-danger"></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="edit-password" class="form-label">Password</label>
                                                 <input type="password" class="form-control" id="edit-password" required>
+                                                <div id="edit-password-error" class="text-danger"></div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div>                                    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button id="buttonEdit" type="button" class="btn btn-primary" onclick="editAdmin()">Save changes</button>
@@ -208,17 +214,20 @@
     const database = getDatabase(app);
 
     // Add admin
-    document.getElementById("buttonAdd").addEventListener("click", function() {
-        let adminId = document.getElementById("admin-id").value;
-        let username = document.getElementById("username").value;
-        let password = document.getElementById("password").value;
+// Add admin
+document.getElementById("buttonAdd").addEventListener("click", function() {
+    let adminId = document.getElementById("admin-id").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
+    let isValid = validateForm(adminId, username, password, "admin-id-error", "username-error", "password-error");
+
+    if (isValid) {
         set(ref(database, "admin/" + adminId), {
             adminId: Number(adminId),
             username: username,
             password: password
         }).then(() => {
-            // Data saved successfully
             alert("Admin Successfully Added!");
             getAllData(); // Refresh the table data
         }).catch((error) => {
@@ -226,23 +235,25 @@
             console.log(error);
         });
 
-        // Close the modal
         const modal = bootstrap.Modal.getInstance(document.getElementById('adminModalAdd'));
         modal.hide();
-    });
+    }
+});
 
-    // Update Admins
-    document.getElementById("buttonEdit").addEventListener("click", function() {
-        let adminId = document.getElementById("edit-admin-id").value;
-        let username = document.getElementById("edit-username").value;
-        let password = document.getElementById("edit-password").value;
+// Update Admins
+document.getElementById("buttonEdit").addEventListener("click", function() {
+    let adminId = document.getElementById("edit-admin-id").value;
+    let username = document.getElementById("edit-username").value;
+    let password = document.getElementById("edit-password").value;
 
+    let isValid = validateForm(adminId, username, password, "edit-admin-id-error", "edit-username-error", "edit-password-error");
+
+    if (isValid) {
         update(ref(database, "admin/" + adminId), {
             adminId: Number(adminId),
             username: username,
             password: password
         }).then(() => {
-            // Data updated successfully
             alert("Admin Successfully Updated!");
             getAllData(); // Refresh the table data
         }).catch((error) => {
@@ -250,10 +261,39 @@
             console.log(error);
         });
 
-        // Close the modal
         const modal = bootstrap.Modal.getInstance(document.getElementById('adminModalEdit'));
         modal.hide();
-    });
+    }
+});
+
+// Validation function
+function validateForm(adminId, username, password, adminIdErrorId, usernameErrorId, passwordErrorId) {
+    let isValid = true;
+
+    if (!adminId) {
+        document.getElementById(adminIdErrorId).innerText = "Admin ID is required.";
+        isValid = false;
+    } else {
+        document.getElementById(adminIdErrorId).innerText = "";
+    }
+
+    if (!username) {
+        document.getElementById(usernameErrorId).innerText = "Username is required.";
+        isValid = false;
+    } else {
+        document.getElementById(usernameErrorId).innerText = "";
+    }
+
+    if (!password) {
+        document.getElementById(passwordErrorId).innerText = "Password is required.";
+        isValid = false;
+    } else {
+        document.getElementById(passwordErrorId).innerText = "";
+    }
+
+    return isValid;
+}
+
 
     // Delete Admin
     function deleteAdmin(adminId) {
@@ -366,6 +406,8 @@
 
     // Initialize Data Fetch
     window.onload = getAllData();
+
+    
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {

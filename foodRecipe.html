@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
 
 	<title>AdminHub</title>
 </head>
+
 <body>
 
 
@@ -22,47 +25,47 @@
 			<img src="img/King_Culinary_Logo-removebg-preview.png">
 		</a>
 		<ul class="side-menu top">
-			<li >
+			<li>
 				<a href="index.html" class="no-active">
-					<i class='bx bxs-dashboard' ></i>
+					<i class='bx bxs-dashboard'></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-            <li>
+			<li>
 				<a href="categories.html" class="no-active">
 					<i class='bx bxs-book-content'></i>
 					<span class="text">Categories</span>
 				</a>
 			</li>
-			<li >
+			<li>
 				<a href="foodRecipe.html" class="active">
-					<i class='bx bxs-food-menu' ></i>
+					<i class='bx bxs-food-menu'></i>
 					<span class="text">Food Recipe</span>
 				</a>
 			</li>
 			<li>
 				<a href="comment.html" class="no-active">
-					<i class='bx bxs-comment' ></i>
+					<i class='bx bxs-comment'></i>
 					<span class="text">Comment</span>
 				</a>
 			</li>
 			<li>
 				<a href="user.html" class="no-active">
-					<i class='bx bxs-user' ></i>
+					<i class='bx bxs-user'></i>
 					<span class="text">User</span>
 				</a>
 			</li>
 			<li>
 				<a href="admin.html" class="no-active">
-					<i class='bx bxs-user-circle' ></i>
+					<i class='bx bxs-user-circle'></i>
 					<span class="text">Admin</span>
 				</a>
 			</li>
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="login.html" class="logout" >
-					<i class='bx bx-log-in' ></i>
+				<a href="login.html" class="logout">
+					<i class='bx bx-log-in'></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -91,139 +94,182 @@
 					<h1>Food Recipe</h1>
 					<ul class="breadcrumb">
 						<li>
-							<button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addRecipeModal">
-                                Add Food Recipe
-                              </button>
-                              
-                              <!-- Modal add -->
-                              <div class="modal fade" id="addRecipeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Add Food Recipe</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form id="recipe-form">
-                                        <div class="mb-3">
-                                          <label for="recipe-id" class="form-label">Recipe ID</label>
-                                          <input type="text" class="form-control" id="recipe-id" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="user-name" class="form-label">User Name</label>
-                                          <input type="text" class="form-control" id="user-name" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="recipe-name" class="form-label">Recipe Name</label>
-                                          <input type="text" class="form-control" id="recipe-name" required>
-                                        </div>
-										<div class="mb-3">
-										   <label for="category-select" class="form-label">Category</label>
-										   <select  class="form-control" id="category-select" required></select>
-										</div>
-                                        <div class="mb-3">
-                                          <label for="description" class="form-label">Description</label>
-                                          <textarea class="form-control" id="description" rows="3" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="ingredients" class="form-label">Ingredients</label>
-                                          <textarea class="form-control" id="ingredients" rows="3" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="instructions" class="form-label">Instructions</label>
-                                          <textarea class="form-control" id="instructions" rows="3" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="image-file" class="form-label">Image</label>
-                                          <input type="file" class="form-control" id="image-file" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="created-at" class="form-label">Created At</label>
-                                          <input type="date" class="form-control" id="created-at" required>
-                                        </div>
-                                      </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                      <button id="buttonAdd" type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+							<button type="button" class="add-btn" data-bs-toggle="modal"
+								data-bs-target="#addRecipeModal">
+								Add Food Recipe
+							</button>
 
-							  <!-- Modal edit -->
-                              <div class="modal fade" id="editRecipeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Add Food Recipe</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form id="recipe-form">
-                                        <div class="mb-3">
-                                          <label for="recipe-id" class="form-label">Recipe ID</label>
-                                          <input type="text" class="form-control" id="edit-recipe-id" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="user-name" class="form-label">User Name</label>
-                                          <input type="text" class="form-control" id="edit-user-name" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="recipe-name" class="form-label">Recipe Name</label>
-                                          <input type="text" class="form-control" id="edit-recipe-name" required>
-                                        </div>
-										<div class="mb-3">
-											<label for="category-select" class="form-label">Category</label>
-											<select  class="form-control" id="edit-category-select" required></select>
-										 </div>
-                                        <div class="mb-3">
-                                          <label for="description" class="form-label">Description</label>
-                                          <textarea class="form-control" id="edit-description" rows="3" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="ingredients" class="form-label">Ingredients</label>
-                                          <textarea class="form-control" id="edit-ingredients" rows="3" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="instructions" class="form-label">Instructions</label>
-                                          <textarea class="form-control" id="edit-instructions" rows="3" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="image-file" class="form-label">Image</label>
-                                          <input type="file" class="form-control" id="edit-image-file" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="created-at" class="form-label">Created At</label>
-                                          <input type="date" class="form-control" id="edit-created-at" required>
-                                        </div>
-                                      </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                      <button id="buttonEdit" type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+							<!-- Modal add -->
+							<!-- Modal add -->
+							<div class="modal fade" id="addRecipeModal" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">Add Food Recipe</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form id="recipe-form">
+												<div class="mb-3">
+													<label for="recipe-id" class="form-label">Recipe ID</label>
+													<input type="text" class="form-control" id="recipe-id" required>
+													<div id="recipe-id-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="user-name" class="form-label">User Name</label>
+													<input type="text" class="form-control" id="user-name" required>
+													<div id="user-name-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="recipe-name" class="form-label">Recipe Name</label>
+													<input type="text" class="form-control" id="recipe-name" required>
+													<div id="recipe-name-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="category-select" class="form-label">Category</label>
+													<select class="form-control" id="category-select" required></select>
+													<div id="category-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="description" class="form-label">Description</label>
+													<textarea class="form-control" id="description" rows="3"
+														required></textarea>
+													<div id="description-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="ingredients" class="form-label">Ingredients</label>
+													<textarea class="form-control" id="ingredients" rows="3"
+														required></textarea>
+													<div id="ingredients-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="instructions" class="form-label">Instructions</label>
+													<textarea class="form-control" id="instructions" rows="3"
+														required></textarea>
+													<div id="instructions-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="image-file" class="form-label">Image</label>
+													<input type="file" class="form-control" id="image-file" required>
+													<div id="image-file-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="created-at" class="form-label">Created At</label>
+													<input type="date" class="form-control" id="created-at" required>
+													<div id="created-at-error" class="text-danger"></div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button id="buttonAdd" type="button" class="btn btn-primary">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Modal edit -->
+							<div class="modal fade" id="editRecipeModal" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">Edit Food Recipe</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form id="edit-recipe-form">
+												<div class="mb-3">
+													<label for="edit-recipe-id" class="form-label">Recipe ID</label>
+													<input type="text" class="form-control" id="edit-recipe-id" required
+														readonly>
+													<div id="edit-recipe-id-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-user-name" class="form-label">User Name</label>
+													<input type="text" class="form-control" id="edit-user-name"
+														required>
+													<div id="edit-user-name-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-recipe-name" class="form-label">Recipe Name</label>
+													<input type="text" class="form-control" id="edit-recipe-name"
+														required>
+													<div id="edit-recipe-name-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-category-select"
+														class="form-label">Category</label>
+													<select class="form-control" id="edit-category-select"
+														required></select>
+													<div id="edit-category-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-description" class="form-label">Description</label>
+													<textarea class="form-control" id="edit-description" rows="3"
+														required></textarea>
+													<div id="edit-description-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-ingredients" class="form-label">Ingredients</label>
+													<textarea class="form-control" id="edit-ingredients" rows="3"
+														required></textarea>
+													<div id="edit-ingredients-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-instructions"
+														class="form-label">Instructions</label>
+													<textarea class="form-control" id="edit-instructions" rows="3"
+														required></textarea>
+													<div id="edit-instructions-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-image-file" class="form-label">Image</label>
+													<input type="file" class="form-control" id="edit-image-file"
+														required>
+													<div id="edit-image-file-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-created-at" class="form-label">Created At</label>
+													<input type="date" class="form-control" id="edit-created-at"
+														required>
+													<div id="edit-created-at-error" class="text-danger"></div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button id="buttonEdit" type="button" class="btn btn-primary">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</li>
 					</ul>
 				</div>
 			</div>
-						</li>
-					</ul>
-				</div>
+			</li>
+			</ul>
+			</div>
 			</div>
 
 			<div class="table-data">
 				<div class="order">
-                    <div class="head">
-                        <h3>Categories</h3>
-                        <div class="search-wrapper">
-                            <input type="text" id="search-input" placeholder="Search ">
-                            <i class='bx bx-search'></i>
-                        </div>
-                    </div> 
+					<div class="head">
+						<h3>Categories</h3>
+						<div class="search-wrapper">
+							<input type="text" id="search-input" placeholder="Search ">
+							<i class='bx bx-search'></i>
+						</div>
+					</div>
 					<table>
 						<thead>
 							<tr>
@@ -231,12 +277,12 @@
 								<th>User Name</th>
 								<th>Recipe Name</th>
 								<th>Category</th>
-                                <th>Description</th>
-                                <th>Ingredients</th>
-                                <th>Instruction</th>
-                                <th>Image</th>
-                                <th>Created at</th>
-                                <th>Button</th>
+								<th>Description</th>
+								<th>Ingredients</th>
+								<th>Instruction</th>
+								<th>Image</th>
+								<th>Created at</th>
+								<th>Button</th>
 							</tr>
 						</thead>
 						<tbody id="recipeTBody">
@@ -248,8 +294,10 @@
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
-	
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
 	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"></script>
 	<script src="script.js"></script>
 	<script type="module">
@@ -259,8 +307,8 @@
 		import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 
-        // Firebase configuration
-        const firebaseConfig = {
+		// Firebase configuration
+		const firebaseConfig = {
 			apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
 			authDomain: "kingculinarydb.firebaseapp.com",
 			databaseURL: "https://kingculinarydb-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -269,9 +317,9 @@
 			messagingSenderId: "1096190427358",
 			appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
 		};
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
+
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
 		const database = getDatabase(app);
 		const storage = getStorage(app);
 
@@ -285,7 +333,7 @@
 		// Function to fetch categories and populate the select dropdown
 		function fetchCategories() {
 			const categorySelect = document.getElementById('category-select');
-			
+
 			if (!categorySelect) {
 				console.error('Category select element not found');
 				return;
@@ -312,7 +360,7 @@
 
 		function fetchCategoriesEdit() {
 			const categorySelect = document.getElementById('edit-category-select');
-			
+
 			if (!categorySelect) {
 				console.error('Category select element not found');
 				return;
@@ -338,7 +386,7 @@
 		}
 
 		// Add recipe
-		document.getElementById("buttonAdd").addEventListener("click", function() {
+		document.getElementById("buttonAdd").addEventListener("click", function () {
 			let recipeId = document.getElementById('recipe-id').value;
 			let username = document.getElementById('user-name').value;
 			let recipeName = document.getElementById('recipe-name').value;
@@ -349,44 +397,47 @@
 			let createdAt = document.getElementById('created-at').value;
 			let imageFile = document.getElementById('image-file').files[0];
 
-			const recipeRef = ref(database, "recipes/" + recipeId);
+			let isValid = validateForm(recipeId, username, recipeName, category, description, ingredients, instructions, imageFile, createdAt);
 
-			if (imageFile) {
-				const storageReference = storageRef(storage, 'recipePictures/' + recipeId);
-				uploadBytes(storageReference, imageFile).then((snapshot) => {
-					getDownloadURL(snapshot.ref).then((url) => {
-						set(recipeRef, {
-							recipeId: Number(recipeId),
-							username: username,
-							recipeName: recipeName,
-							category: category,
-							description: description,
-							ingredients: ingredients,
-							instructions: instructions,
-							imageFile: url,
-							createdAt: createdAt
-						}).then(() => {
-							alert("Recipe Successfully Added!");
-							getAllData();
-						}).catch((error) => {
-							alert("Failed to add recipe!");
-							console.log(error);
+			if (isValid) {
+				const recipeRef = ref(database, "recipes/" + recipeId);
+
+				if (imageFile) {
+					const storageReference = storageRef(storage, 'recipePictures/' + recipeId);
+					uploadBytes(storageReference, imageFile).then((snapshot) => {
+						getDownloadURL(snapshot.ref).then((url) => {
+							set(recipeRef, {
+								recipeId: Number(recipeId),
+								username: username,
+								recipeName: recipeName,
+								category: category,
+								description: description,
+								ingredients: ingredients,
+								instructions: instructions,
+								imageFile: url,
+								createdAt: createdAt
+							}).then(() => {
+								alert("Recipe Successfully Added!");
+								getAllData();
+							}).catch((error) => {
+								alert("Failed to add recipe!");
+								console.log(error);
+							});
 						});
+					}).catch((error) => {
+						alert("Failed to upload picture!");
+						console.log(error);
 					});
-				}).catch((error) => {
-					alert("Failed to upload picture!");
-					console.log(error);
-				});
-			}
+				}
 
-			// Close the modal
-			const modal = bootstrap.Modal.getInstance(document.getElementById('addRecipeModal'));
-			modal.hide();
+				// Close the modal
+				const modal = bootstrap.Modal.getInstance(document.getElementById('addRecipeModal'));
+				modal.hide();
+			}
 		});
 
-        
-        // Update recipe
-		document.getElementById("buttonEdit").addEventListener("click", function() {
+		// Update recipe
+		document.getElementById("buttonEdit").addEventListener("click", function () {
 			let recipeId = document.getElementById('edit-recipe-id').value;
 			let username = document.getElementById('edit-user-name').value;
 			let recipeName = document.getElementById('edit-recipe-name').value;
@@ -397,41 +448,116 @@
 			let createdAt = document.getElementById('edit-created-at').value;
 			let imageFile = document.getElementById('edit-image-file').files[0];
 
-			const recipeRef = ref(database, "recipes/" + recipeId);
+			let isValid = validateForm(recipeId, username, recipeName, category, description, ingredients, instructions, imageFile, createdAt);
 
-			if (imageFile) {
-				const storageReference = storageRef(storage, 'recipePictures/' + recipeId);
-				uploadBytes(storageReference, imageFile).then((snapshot) => {
-					getDownloadURL(snapshot.ref).then((url) => {
-						update(recipeRef, {
-							recipeId: Number(recipeId),
-							username: username,
-							recipeName: recipeName,
-							category: category,
-							description: description,
-							ingredients: ingredients,
-							instructions: instructions,
-							imageFile: url,
-							createdAt: createdAt
-						}).then(() => {
-							alert("Recipe Successfully Updated!");
-							getAllData();
-						}).catch((error) => {
-							alert("Failed to update recipe!");
-							console.log(error);
+			if (isValid) {
+				const recipeRef = ref(database, "recipes/" + recipeId);
+
+				if (imageFile) {
+					const storageReference = storageRef(storage, 'recipePictures/' + recipeId);
+					uploadBytes(storageReference, imageFile).then((snapshot) => {
+						getDownloadURL(snapshot.ref).then((url) => {
+							update(recipeRef, {
+								recipeId: Number(recipeId),
+								username: username,
+								recipeName: recipeName,
+								category: category,
+								description: description,
+								ingredients: ingredients,
+								instructions: instructions,
+								imageFile: url,
+								createdAt: createdAt
+							}).then(() => {
+								alert("Recipe Successfully Updated!");
+								getAllData();
+							}).catch((error) => {
+								alert("Failed to update recipe!");
+								console.log(error);
+							});
 						});
+					}).catch((error) => {
+						alert("Failed to upload picture!");
+						console.log(error);
 					});
-				}).catch((error) => {
-					alert("Failed to upload picture!");
-					console.log(error);
-				});
+				}
+
+				// Close the modal
+				const modal = bootstrap.Modal.getInstance(document.getElementById('editRecipeModal'));
+				modal.hide();
+			}
+		});
+
+		// Validation function
+		function validateForm(recipeId, username, recipeName, category, description, ingredients, instructions, imageFile, createdAt) {
+			let isValid = true;
+
+			if (!recipeId) {
+				document.getElementById('recipe-id-error').innerText = "Recipe ID is required.";
+				isValid = false;
+			} else {
+				document.getElementById('recipe-id-error').innerText = "";
 			}
 
-			// Close the modal
-			const modal = bootstrap.Modal.getInstance(document.getElementById('editRecipeModal'));
-			modal.hide();
-		});
-		
+			if (!username) {
+				document.getElementById('user-name-error').innerText = "User Name is required.";
+				isValid = false;
+			} else {
+				document.getElementById('user-name-error').innerText = "";
+			}
+
+			if (!recipeName) {
+				document.getElementById('recipe-name-error').innerText = "Recipe Name is required.";
+				isValid = false;
+			} else {
+				document.getElementById('recipe-name-error').innerText = "";
+			}
+
+			if (!category) {
+				document.getElementById('category-select-error').innerText = "Category is required.";
+				isValid = false;
+			} else {
+				document.getElementById('category-select-error').innerText = "";
+			}
+
+			if (!description) {
+				document.getElementById('description-error').innerText = "Description is required.";
+				isValid = false;
+			} else {
+				document.getElementById('description-error').innerText = "";
+			}
+
+			if (!ingredients) {
+				document.getElementById('ingredients-error').innerText = "Ingredients are required.";
+				isValid = false;
+			} else {
+				document.getElementById('ingredients-error').innerText = "";
+			}
+
+			if (!instructions) {
+				document.getElementById('instructions-error').innerText = "Instructions are required.";
+				isValid = false;
+			} else {
+				document.getElementById('instructions-error').innerText = "";
+			}
+
+			if (!imageFile) {
+				document.getElementById('image-file-error').innerText = "Image is required.";
+				isValid = false;
+			} else {
+				document.getElementById('image-file-error').innerText = "";
+			}
+
+			if (!createdAt) {
+				document.getElementById('created-at-error').innerText = "Created At date is required.";
+				isValid = false;
+			} else {
+				document.getElementById('created-at-error').innerText = "";
+			}
+
+			return isValid;
+		}
+
+
 		// Delete recipe
 		function deleteRecipe(recipeId) {
 			remove(ref(database, "recipes/" + recipeId)).then(() => {
@@ -474,22 +600,22 @@
 			editButton.classList.add("btn-edit");
 			editButton.setAttribute("data-bs-toggle", "modal");
 			editButton.setAttribute("data-bs-target", "#editRecipeModal");
-			editButton.onclick = function() {
-				 document.getElementById('edit-recipe-id').value = recipeId;
-				 document.getElementById('edit-user-name').value = username;
-				 document.getElementById('edit-recipe-name').value = recipeName;
-				 document.getElementById('edit-description').value = description;
-				 document.getElementById('edit-ingredients').value = ingredients;
-				 document.getElementById('edit-instructions').value = instructions;
-				 document.getElementById('edit-image-file').value = imageFile;
-				 document.getElementById('edit-created-at').value= createdAt;
+			editButton.onclick = function () {
+				document.getElementById('edit-recipe-id').value = recipeId;
+				document.getElementById('edit-user-name').value = username;
+				document.getElementById('edit-recipe-name').value = recipeName;
+				document.getElementById('edit-description').value = description;
+				document.getElementById('edit-ingredients').value = ingredients;
+				document.getElementById('edit-instructions').value = instructions;
+				document.getElementById('edit-image-file').value = imageFile;
+				document.getElementById('edit-created-at').value = createdAt;
 			};
 
 			// Create the Delete button
 			let deleteButton = document.createElement("button");
 			deleteButton.innerHTML = "Delete";
 			deleteButton.classList.add("btn-del");
-			deleteButton.onclick = function() {
+			deleteButton.onclick = function () {
 				if (confirm("Are you sure you want to delete this recipe?")) {
 					deleteRecipe(recipeId); // Call delete function
 					trow.remove(); // This line will remove the row from the table
@@ -540,47 +666,48 @@
 		}
 
 		document.getElementById('search-input').addEventListener('keyup', function () {
-            let filter = this.value.toUpperCase();
-            let table = document.querySelector('table');
-            let tr = table.getElementsByTagName('tr');
+			let filter = this.value.toUpperCase();
+			let table = document.querySelector('table');
+			let tr = table.getElementsByTagName('tr');
 
-            for (let i = 1; i < tr.length; i++) {
-                let td = tr[i].getElementsByTagName('td');
-                let showRow = false;
-                for (let j = 0; j < td.length; j++) {
-                    if (td[j]) {
-                        let txtValue = td[j].textContent || td[j].innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            showRow = true;
-                            break;
-                        }
-                    }
-                }
-                if (showRow) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        });
+			for (let i = 1; i < tr.length; i++) {
+				let td = tr[i].getElementsByTagName('td');
+				let showRow = false;
+				for (let j = 0; j < td.length; j++) {
+					if (td[j]) {
+						let txtValue = td[j].textContent || td[j].innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							showRow = true;
+							break;
+						}
+					}
+				}
+				if (showRow) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		});
 
 		// Initialize Data Fetch
 		window.onload = getAllData(), fetchCategories(), fetchCategoriesEdit();
 	</script>
-		   <script>
-			document.addEventListener("DOMContentLoaded", function() {
-				const adminName = localStorage.getItem("adminUsername");
-				if (adminName) {
-					document.querySelector(".AdminName").textContent = adminName;
-				} else {
-					alert("No admin logged in.");
-					window.location.href = "login.html";
-				}
-				document.querySelector(".logout").addEventListener("click", function() {
-					localStorage.removeItem("adminUsername");
-					window.location.href = "login.html";
-				});
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const adminName = localStorage.getItem("adminUsername");
+			if (adminName) {
+				document.querySelector(".AdminName").textContent = adminName;
+			} else {
+				alert("No admin logged in.");
+				window.location.href = "login.html";
+			}
+			document.querySelector(".logout").addEventListener("click", function () {
+				localStorage.removeItem("adminUsername");
+				window.location.href = "login.html";
 			});
-		</script>
+		});
+	</script>
 </body>
+
 </html>

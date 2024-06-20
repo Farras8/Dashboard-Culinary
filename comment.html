@@ -1,226 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<!-- Boxicons -->
-		<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-		<link rel="stylesheet" href="style.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>AdminHub</title>
-	</head>
-	<body>
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+
+	<title>AdminHub</title>
+</head>
+
+<body>
 
 
-		<!-- SIDEBAR -->
-		<section id="sidebar">
-			<a href="#" class="brand">
-				<span class="text">KING CULINARY</span>
-			</a>
-			<a href="" class="img-brand">
-				<img src="img/King_Culinary_Logo-removebg-preview.png">
-			</a>
-			<ul class="side-menu top">
-				<li>
-					<a href="index.html" class="no-active">
-						<i class='bx bxs-dashboard' ></i>
-						<span class="text">Dashboard</span>
-					</a>
-				</li>
-				<li>
-					<a href="categories.html" class="no-active">
-						<i class='bx bxs-book-content'></i>
-						<span class="text">Categories</span>
-					</a>
-				</li>
-				<li>
-					<a href="foodRecipe.html" class="no-active">
-						<i class='bx bxs-food-menu' ></i>
-						<span class="text">Food Recipe</span>
-					</a>
-				</li>
-				<li>
-					<a href="comment.html" class="active">
-						<i class='bx bxs-comment' ></i>
-						<span class="text">Comment</span>
-					</a>
-				</li>
-				<li>
-					<a href="user.html" class="no-active">
-						<i class='bx bxs-user' ></i>
-						<span class="text">User</span>
-					</a>
-				</li>
-				<li>
-					<a href="admin.html" class="no-active">
-						<i class='bx bxs-user-circle' ></i>
-						<span class="text">Admin</span>
-					</a>
-				</li>
-			</ul>
-			<ul class="side-menu">
-				<li>
-					<a href="login.html" class="logout" >
-						<i class='bx bx-log-in' ></i>
-						<span class="text">Logout</span>
-					</a>
-				</li>
-			</ul>
-		</section>
-		<!-- SIDEBAR -->
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<span class="text">KING CULINARY</span>
+		</a>
+		<a href="" class="img-brand">
+			<img src="img/King_Culinary_Logo-removebg-preview.png">
+		</a>
+		<ul class="side-menu top">
+			<li>
+				<a href="index.html" class="no-active">
+					<i class='bx bxs-dashboard'></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="categories.html" class="no-active">
+					<i class='bx bxs-book-content'></i>
+					<span class="text">Categories</span>
+				</a>
+			</li>
+			<li>
+				<a href="foodRecipe.html" class="no-active">
+					<i class='bx bxs-food-menu'></i>
+					<span class="text">Food Recipe</span>
+				</a>
+			</li>
+			<li>
+				<a href="comment.html" class="active">
+					<i class='bx bxs-comment'></i>
+					<span class="text">Comment</span>
+				</a>
+			</li>
+			<li>
+				<a href="user.html" class="no-active">
+					<i class='bx bxs-user'></i>
+					<span class="text">User</span>
+				</a>
+			</li>
+			<li>
+				<a href="admin.html" class="no-active">
+					<i class='bx bxs-user-circle'></i>
+					<span class="text">Admin</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="login.html" class="logout">
+					<i class='bx bx-log-in'></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
 
-		<!-- CONTENT -->
-		<section id="content">
-			<!-- NAVBAR -->
-			<nav>
-				<i class='bx bx-menu'></i>
-				<div class="hiAdmin">
-					<h5>Hi,</h5>
-					<h5 class="AdminName">Admin</h5>
-				</div>
-			</nav>
-			<!-- NAVBAR -->
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+			<div class="hiAdmin">
+				<h5>Hi,</h5>
+				<h5 class="AdminName">Admin</h5>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
 
-			<!-- MAIN -->
-			<main>
-				<div class="head-title">
-					<div class="left">
-						<h1>Comment</h1>
-						<ul class="breadcrumb">
-							<li>
-								<button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addCommentModal">
-									Add Comment
-								</button>
-								
-								<!-- Add Comment Modal -->
-								<div class="modal fade" id="addCommentModal" tabindex="-1" aria-labelledby="addCommentModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Comment</h1>
+					<ul class="breadcrumb">
+						<li>
+							<button type="button" class="add-btn" data-bs-toggle="modal"
+								data-bs-target="#addCommentModal">
+								Add Comment
+							</button>
+
+							<!-- Add Comment Modal -->
+							<!-- Add Comment Modal -->
+							<div class="modal fade" id="addCommentModal" tabindex="-1"
+								aria-labelledby="addCommentModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-										<h1 class="modal-title fs-5" id="addCommentModalLabel">Add Comment</h1>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											<h1 class="modal-title fs-5" id="addCommentModalLabel">Add Comment</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-										<form id="comment-form">
-											<div class="mb-3">
-											<label for="comment-id" class="form-label">Comment ID</label>
-											<input type="text" class="form-control" id="comment-id" required>
-											</div>
-											<div class="mb-3">
-												<label for="recipe-select" class="form-label">Recipe </label>
-												<select class="form-select" id="recipe-select" required>
-													
-												</select>
-											</div>
-											<div class="mb-3">
-												<label for="user-select" class="form-label">User</label>
-												<select class="form-select" id="user-select" required>
-													
-												</select>
-											</div>
-											<div class="mb-3">
-												<label for="comment-text" class="form-label">Comment</label>
-												<input type="text" class="form-control" id="comment-text" required>
-											</div>
-											<div class="mb-3">
-												<label for="created-at" class="form-label">Created At</label>
-												<input type="date" class="form-control" id="created-at" required>
-											</div>
-										</form>
+											<form id="comment-form">
+												<div class="mb-3">
+													<label for="comment-id" class="form-label">Comment ID</label>
+													<input type="text" class="form-control" id="comment-id" required>
+													<div id="comment-id-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="recipe-select" class="form-label">Recipe</label>
+													<select class="form-select" id="recipe-select" required></select>
+													<div id="recipe-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="user-select" class="form-label">User</label>
+													<select class="form-select" id="user-select" required></select>
+													<div id="user-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="comment-text" class="form-label">Comment</label>
+													<input type="text" class="form-control" id="comment-text" required>
+													<div id="comment-text-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="created-at" class="form-label">Created At</label>
+													<input type="date" class="form-control" id="created-at" required>
+													<div id="created-at-error" class="text-danger"></div>
+												</div>
+											</form>
 										</div>
 										<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary" id="buttonAdd" onclick="saveComment()">Save changes</button>
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary" id="buttonAdd"
+												onclick="saveComment()">Save changes</button>
 										</div>
-									</div>
 									</div>
 								</div>
-
-								<!-- Edit Comment Modal -->
-								<div class="modal fade" id="editCommentModal" tabindex="-1" aria-labelledby="addCommentModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-										<h1 class="modal-title fs-5" id="addCommentModalLabel">Add Comment</h1>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-										<div class="modal-body">
-										<form id="comment-form">
-											<div class="mb-3">
-											<label for="edit-comment-id" class="form-label">Comment ID</label>
-											<input type="text" class="form-control" id="edit-comment-id" required>
-											</div>
-											<div class="mb-3">
-												<label for="edit-recipe-select" class="form-label">Recipe </label>
-												<select class="form-select" id="edit-recipe-select" required>
-													
-												</select>
-											</div>
-											<div class="mb-3">
-												<label for="edit-user-select" class="form-label">User</label>
-												<select class="form-select" id="edit-user-select" required>
-													
-												</select>
-											</div>
-											<div class="mb-3">
-												<label for="edit-comment-text" class="form-label">Comment</label>
-												<input type="text" class="form-control" id="edit-comment-text" required>
-											</div>
-											<div class="mb-3">
-												<label for="edit-created-at" class="form-label">Created At</label>
-												<input type="date" class="form-control" id="edit-created-at" required>
-											</div>
-										</form>
-										</div>
-										<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary" id="buttonEdit">Save changes</button>
-										</div>
-									</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="table-data">
-					<div class="order">
-						<div class="head">
-							<h3>Categories</h3>
-							<div class="search-wrapper">
-								<input type="text" id="search-input" placeholder="Search ">
-								<i class='bx bx-search'></i>
 							</div>
-						</div> 
-						<table>
-							<thead>
-								<tr>
-									<th>Comment ID</th>
-									<th>Recipe</th>
-									<th>User</th>
-									<th>Comment</th>
-									<th>Created At</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody id="commentTableBody">
-								<!-- Comment rows will be populated here dynamically -->
-							</tbody>
-						</table>
-					</div>
+
+							<!-- Edit Comment Modal -->
+							<div class="modal fade" id="editCommentModal" tabindex="-1"
+								aria-labelledby="addCommentModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="addCommentModalLabel">Edit Comment</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form id="edit-comment-form">
+												<div class="mb-3">
+													<label for="edit-comment-id" class="form-label">Comment ID</label>
+													<input type="text" class="form-control" id="edit-comment-id"
+														required readonly>
+													<div id="edit-comment-id-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-recipe-select" class="form-label">Recipe</label>
+													<select class="form-select" id="edit-recipe-select"
+														required></select>
+													<div id="edit-recipe-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-user-select" class="form-label">User</label>
+													<select class="form-select" id="edit-user-select" required></select>
+													<div id="edit-user-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-comment-text" class="form-label">Comment</label>
+													<input type="text" class="form-control" id="edit-comment-text"
+														required>
+													<div id="edit-comment-text-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-created-at" class="form-label">Created At</label>
+													<input type="date" class="form-control" id="edit-created-at"
+														required>
+													<div id="edit-created-at-error" class="text-danger"></div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary" id="buttonEdit">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</li>
+					</ul>
 				</div>
-			</main>
-			<!-- MAIN -->
-		</section>
-		<!-- CONTENT -->
-		
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-		<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
-		<script type="module">
+			</div>
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Categories</h3>
+						<div class="search-wrapper">
+							<input type="text" id="search-input" placeholder="Search ">
+							<i class='bx bx-search'></i>
+						</div>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Comment ID</th>
+								<th>Recipe</th>
+								<th>User</th>
+								<th>Comment</th>
+								<th>Created At</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody id="commentTableBody">
+							<!-- Comment rows will be populated here dynamically -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+	<script type="module">
 		// Import the functions you need from the SDKs you need
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 		import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -240,10 +262,10 @@
 		const app = initializeApp(firebaseConfig);
 		const database = getDatabase(app);
 
-		function fetchAddRecipe(){
+		function fetchAddRecipe() {
 			const recipeSelect = document.getElementById('recipe-select');
 
-			if(!recipeSelect){
+			if (!recipeSelect) {
 				console.error('Recipe select element not found');
 				return;
 			}
@@ -269,7 +291,7 @@
 
 		function fetchRecipesEdit() {
 			const recipeSelect = document.getElementById('edit-recipe-select');
-			
+
 			if (!recipeSelect) {
 				console.error('Recipe select element not found');
 				return;
@@ -294,10 +316,10 @@
 			});
 		}
 
-		function fetchAddUser(){
+		function fetchAddUser() {
 			const userSelect = document.getElementById('user-select');
 
-			if(!userSelect){
+			if (!userSelect) {
 				console.error('user select element not found');
 				return;
 			}
@@ -323,7 +345,7 @@
 
 		function fetchUserEdit() {
 			const userSelect = document.getElementById('edit-user-select');
-			
+
 			if (!userSelect) {
 				console.error('user select element not found');
 				return;
@@ -350,61 +372,107 @@
 
 
 		// Add Comment
-		document.getElementById("buttonAdd").addEventListener("click", function() {
+		document.getElementById("buttonAdd").addEventListener("click", function () {
 			let commentId = document.getElementById("comment-id").value;
 			let recipe = document.getElementById("recipe-select").value;
 			let user = document.getElementById("user-select").value;
 			let comment = document.getElementById("comment-text").value;
 			let dateCreate = document.getElementById("created-at").value;
 
-			set(ref(database, "comment/" + commentId), {
-				commentId: Number(commentId),
-				recipe: recipe,
-				user: user,
-				comment: comment,
-				dateCreate: dateCreate
-			}).then(() => {
-				// Data saved successfully
-				alert("Comment Successfully Added!");
-				getAllData(); // Refresh the table data
-			}).catch((error) => {
-				alert("Failed to add comment!");
-				console.log(error);
-			});
+			let isValid = validateForm(commentId, recipe, user, comment, dateCreate);
 
-			// Close the modal
-			const modal = bootstrap.Modal.getInstance(document.getElementById('addCommentModal'));
-			modal.hide();
-			location.reload();
+			if (isValid) {
+				set(ref(database, "comment/" + commentId), {
+					commentId: Number(commentId),
+					recipe: recipe,
+					user: user,
+					comment: comment,
+					dateCreate: dateCreate
+				}).then(() => {
+					alert("Comment Successfully Added!");
+					getAllData(); // Refresh the table data
+				}).catch((error) => {
+					alert("Failed to add comment!");
+					console.log(error);
+				});
+
+				// Close the modal
+				const modal = bootstrap.Modal.getInstance(document.getElementById('addCommentModal'));
+				modal.hide();
+			}
 		});
 
-		// Update Comment
-		document.getElementById("buttonEdit").addEventListener("click", function() {
+		document.getElementById("buttonEdit").addEventListener("click", function () {
 			let commentId = document.getElementById("edit-comment-id").value;
 			let recipe = document.getElementById("edit-recipe-select").value;
 			let user = document.getElementById("edit-user-select").value;
 			let comment = document.getElementById("edit-comment-text").value;
 			let dateCreate = document.getElementById("edit-created-at").value;
 
-			update(ref(database, "comment/" + commentId), {
-				commentId: Number(commentId),
-				recipe: recipe,
-				userId: user,
-				comment: comment,
-				dateCreate: dateCreate
-			}).then(() => {
-				// Data updated successfully
-				alert("Comment Successfully Updated!");
-				getAllData(); // Refresh the table data
-			}).catch((error) => {
-				alert("Failed to update comment!");
-				console.log(error);
-			});
+			let isValid = validateForm(commentId, recipe, user, comment, dateCreate);
 
-			// Close the modal
-			const modal = bootstrap.Modal.getInstance(document.getElementById('editCommentModal'));
-			modal.hide();
+			if (isValid) {
+				update(ref(database, "comment/" + commentId), {
+					commentId: Number(commentId),
+					recipe: recipe,
+					user: user,
+					comment: comment,
+					dateCreate: dateCreate
+				}).then(() => {
+					alert("Comment Successfully Updated!");
+					getAllData(); // Refresh the table data
+				}).catch((error) => {
+					alert("Failed to update comment!");
+					console.log(error);
+				});
+
+				// Close the modal
+				const modal = bootstrap.Modal.getInstance(document.getElementById('editCommentModal'));
+				modal.hide();
+			}
 		});
+
+		// Validation function
+		function validateForm(commentId, recipe, user, comment, dateCreate) {
+			let isValid = true;
+
+			if (!commentId) {
+				document.getElementById('comment-id-error').innerText = "Comment ID is required.";
+				isValid = false;
+			} else {
+				document.getElementById('comment-id-error').innerText = "";
+			}
+
+			if (!recipe) {
+				document.getElementById('recipe-select-error').innerText = "Recipe is required.";
+				isValid = false;
+			} else {
+				document.getElementById('recipe-select-error').innerText = "";
+			}
+
+			if (!user) {
+				document.getElementById('user-select-error').innerText = "User is required.";
+				isValid = false;
+			} else {
+				document.getElementById('user-select-error').innerText = "";
+			}
+
+			if (!comment) {
+				document.getElementById('comment-text-error').innerText = "Comment text is required.";
+				isValid = false;
+			} else {
+				document.getElementById('comment-text-error').innerText = "";
+			}
+
+			if (!dateCreate) {
+				document.getElementById('created-at-error').innerText = "Created date is required.";
+				isValid = false;
+			} else {
+				document.getElementById('created-at-error').innerText = "";
+			}
+
+			return isValid;
+		}
 
 		// Delete comment
 		function deleteComment(commentId) {
@@ -440,7 +508,7 @@
 			editButton.classList.add("btn-edit");
 			editButton.setAttribute("data-bs-toggle", "modal");
 			editButton.setAttribute("data-bs-target", "#editCommentModal");
-			editButton.onclick = function() {
+			editButton.onclick = function () {
 				document.getElementById("edit-comment-id").value = commentId;
 				document.getElementById("edit-recipe-select").value = recipe;
 				document.getElementById("edit-user-select").value = user;
@@ -452,7 +520,7 @@
 			let deleteButton = document.createElement("button");
 			deleteButton.innerHTML = "Delete";
 			deleteButton.classList.add("btn-del");
-			deleteButton.onclick = function() {
+			deleteButton.onclick = function () {
 				if (confirm("Are you sure you want to delete this comment?")) {
 					deleteComment(commentId); // Call delete function
 					trow.remove(); // This line will remove the row from the table
@@ -499,48 +567,49 @@
 		}
 
 		document.getElementById('search-input').addEventListener('keyup', function () {
-            let filter = this.value.toUpperCase();
-            let table = document.querySelector('table');
-            let tr = table.getElementsByTagName('tr');
+			let filter = this.value.toUpperCase();
+			let table = document.querySelector('table');
+			let tr = table.getElementsByTagName('tr');
 
-            for (let i = 1; i < tr.length; i++) {
-                let td = tr[i].getElementsByTagName('td');
-                let showRow = false;
-                for (let j = 0; j < td.length; j++) {
-                    if (td[j]) {
-                        let txtValue = td[j].textContent || td[j].innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            showRow = true;
-                            break;
-                        }
-                    }
-                }
-                if (showRow) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        });
+			for (let i = 1; i < tr.length; i++) {
+				let td = tr[i].getElementsByTagName('td');
+				let showRow = false;
+				for (let j = 0; j < td.length; j++) {
+					if (td[j]) {
+						let txtValue = td[j].textContent || td[j].innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							showRow = true;
+							break;
+						}
+					}
+				}
+				if (showRow) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		});
 
 		// Initialize Data Fetch
-		window.onload = getAllData(), fetchAddRecipe(), fetchRecipesEdit(),fetchAddUser(), fetchUserEdit();
-		</script>
-		<script src="script.js"></script>
-		<script>
-			document.addEventListener("DOMContentLoaded", function() {
-				const adminName = localStorage.getItem("adminUsername");
-				if (adminName) {
-					document.querySelector(".AdminName").textContent = adminName;
-				} else {
-					alert("No admin logged in.");
-					window.location.href = "login.html";
-				}
-				document.querySelector(".logout").addEventListener("click", function() {
-					localStorage.removeItem("adminUsername");
-					window.location.href = "login.html";
-				});
+		window.onload = getAllData(), fetchAddRecipe(), fetchRecipesEdit(), fetchAddUser(), fetchUserEdit();
+	</script>
+	<script src="script.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const adminName = localStorage.getItem("adminUsername");
+			if (adminName) {
+				document.querySelector(".AdminName").textContent = adminName;
+			} else {
+				alert("No admin logged in.");
+				window.location.href = "login.html";
+			}
+			document.querySelector(".logout").addEventListener("click", function () {
+				localStorage.removeItem("adminUsername");
+				window.location.href = "login.html";
 			});
-		</script>
-	</body>
+		});
+	</script>
+</body>
+
 </html>
