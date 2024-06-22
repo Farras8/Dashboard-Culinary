@@ -639,8 +639,10 @@
 			document.getElementById("recipeTBody").appendChild(trow);
 		}
 
-		// Add All comments to Table
 		function addAllRecipeTable(Recipe) {
+			// Sort by createdAt descending
+			Recipe.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
 			document.getElementById("recipeTBody").innerHTML = "";
 			Recipe.forEach(element => {
 				addRecipeTableItem(element.recipeId, element.username, element.recipeName, element.category, element.description, element.ingredients, element.instructions, element.imageFile, element.createdAt);
@@ -689,6 +691,8 @@
 				}
 			}
 		});
+
+		
 
 		// Initialize Data Fetch
 		window.onload = getAllData(), fetchCategories(), fetchCategoriesEdit();

@@ -501,12 +501,15 @@
     }
 
     // Add All comments to Table
-    function addAllUserTable(user) {
-      document.getElementById("userTBody").innerHTML = "";
-      user.forEach(element => {
-        addUserTableItem(element.userId, element.username, element.email, element.password, element.profilePicture, element.bio, element.createdAt);
-      });
-    }
+    function addAllUserTable(User) {
+			// Sort by createdAt descending
+			User.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+			document.getElementById("userTBody").innerHTML = "";
+			User.forEach(element => {
+				addUserTableItem(element.userId, element.username, element.email, element.password, element.profilePicture, element.bio, element.createdAt);
+			});
+		}
 
     // Fetch All comments from Firebase
     function getAllData() {
