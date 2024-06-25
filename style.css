@@ -96,21 +96,9 @@ body {
 	height: 70px;
 	margin-right: 1em;
 }
-#sidebar .side-menu a.active {
-	background: rgba(216, 205, 158, 0.9);
-	color: rgb(18, 189, 166);
-	margin-left: 0;
-}
-#sidebar .side-menu a.active:before {
-	content: '';
-	background: #888160;
-	width: 6px;
-	height: 100%;
-}
-#sidebar .side-menu a.active i {
-	color:rgb(18, 189, 166) ;
-	margin-left: calc(0.75rem - 3px);
-}
+
+
+
 #sidebar .side-menu li a {
 	width: 100%;
 	height: 100%;

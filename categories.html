@@ -236,56 +236,101 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
+        let originalCatName = null;
+
+        function isCategoryIdExists(catId) {
+            let table = document.getElementById("catTbody");
+            for (let i = 0; i < table.rows.length; i++) {
+                if (table.rows[i].cells[0].innerHTML === catId.toString()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Check if Username exists
+        function isCategoryNameExists(catName) {
+            let table = document.getElementById("catTbody");
+            for (let i = 0; i < table.rows.length; i++) {
+                if (table.rows[i].cells[1].innerHTML === catName) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         // Add Category Recipe
         document.getElementById("submitcategory").addEventListener("click", function () {
-            let catId = document.getElementById("category-id").value;
-            let catName = document.getElementById("cat-name").value;
-            let desc = document.getElementById("description").value;
+        let catId = document.getElementById("category-id").value;
+        let catName = document.getElementById("cat-name").value;
+        let desc = document.getElementById("description").value;
 
-            let isValid = validateForm(catId, catName, desc, "category-id-error", "cat-name-error", "description-error");
+        let isValid = validateForm(catId, catName, desc, "category-id-error", "cat-name-error", "description-error");
 
-            if (isValid) {
-                set(ref(database, "category/" + catId), {
-                    catId: Number(catId),
-                    catName: catName,
-                    desc: desc
-                }).then(() => {
-                    alert("Category Successfully Added!");
-                    getAllData(); // Refresh the table data
-                }).catch((error) => {
-                    alert("Failed to add Category!");
-                    console.log(error);
-                });
-
-                const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
-                modal.hide();
+        // Check if Category ID or Category Name already exists
+        if (isValid) {
+            if (isCategoryIdExists(catId)) {
+                document.getElementById("category-id-error").innerText = "Category ID already exists.";
+                isValid = false;
+            } else if (isCategoryNameExists(catName)) {
+                document.getElementById("cat-name-error").innerText = "Category Name already exists.";
+                isValid = false;
             }
-        });
+        }
 
-        document.getElementById("savechanges").addEventListener("click", function () {
-            let catId = document.getElementById("edit-category-id").value;
-            let catName = document.getElementById("edit-cat-name").value;
-            let desc = document.getElementById("edit-description").value;
+        if (isValid) {
+            set(ref(database, "category/" + catId), {
+                catId: Number(catId),
+                catName: catName,
+                desc: desc
+            }).then(() => {
+                alert("Category Successfully Added!");
+                getAllData(); // Refresh the table data
+                window.location.reload();
+            }).catch((error) => {
+                alert("Failed to add Category!");
+                console.log(error);
+            });
 
-            let isValid = validateForm(catId, catName, desc, "edit-category-id-error", "edit-cat-name-error", "edit-description-error");
+            const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+            modal.hide();
+        }
+    });
 
-            if (isValid) {
-                update(ref(database, "category/" + catId), {
-                    catId: Number(catId),
-                    catName: catName,
-                    desc: desc
-                }).then(() => {
-                    alert("Category Successfully Updated!");
-                    getAllData(); // Refresh the table data
-                }).catch((error) => {
-                    alert("Failed to update Category!");
-                    console.log(error);
-                });
+    document.getElementById("savechanges").addEventListener("click", function () {
+        let catId = document.getElementById("edit-category-id").value;
+        let catName = document.getElementById("edit-cat-name").value;
+        let desc = document.getElementById("edit-description").value;
 
-                const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal2'));
-                modal.hide();
+        let isValid = validateForm(catId, catName, desc, "edit-category-id-error", "edit-cat-name-error", "edit-description-error");
+
+        // Check if Category Name already exists
+        if (isValid) {
+            if (isCategoryNameExists(catName) && catName !== originalCatName) {
+                document.getElementById("edit-cat-name-error").innerText = "Category Name already exists.";
+                isValid = false;
             }
-        });
+        }
+
+        if (isValid) {
+            update(ref(database, "category/" + catId), {
+                catId: Number(catId),
+                catName: catName,
+                desc: desc
+            }).then(() => {
+                alert("Category Successfully Updated!");
+                getAllData(); // Refresh the table data
+                window.location.reload();
+            }).catch((error) => {
+                alert("Failed to update Category!");
+                console.log(error);
+            });
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal2'));
+            modal.hide();
+        }
+    });
+
 
         // Validation function
         function validateForm(catId, catName, desc, catIdErrorId, catNameErrorId, descErrorId) {
@@ -442,6 +487,14 @@
                 localStorage.removeItem("adminUsername");
                 window.location.href = "login.html";
             });
+        });
+        document.getElementById('exampleModal').addEventListener('hidden.bs.modal', function () {
+            window.location.reload();
+        });
+
+        // Event listener for modal close event (Edit Admin Modal)
+        document.getElementById('exampleModal2').addEventListener('hidden.bs.modal', function () {
+            window.location.reload();
         });
     </script>
 </body>
