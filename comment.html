@@ -540,8 +540,10 @@
 			document.getElementById("commentTableBody").appendChild(trow);
 		}
 
-		// Add All comments to Table
 		function addAllCommentTable(comment) {
+			// Sort by createdAt descending
+			comment.sort((a, b) => new Date(b.dateCreate) - new Date(a.dateCreate));
+
 			document.getElementById("commentTableBody").innerHTML = "";
 			comment.forEach(element => {
 				addCommentTableItem(element.commentId, element.recipe, element.user, element.comment, element.dateCreate);
