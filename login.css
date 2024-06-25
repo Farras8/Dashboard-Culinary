@@ -14,9 +14,27 @@ img {
 }
 
 body {
-    background:#E4DAA9;
+    background-image: url(img/FoodPhoto1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px); /* Adjust the blur intensity as needed */
+    z-index: -1;
+}
 
 .wrap-login {
     width: 100%;
@@ -24,8 +42,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
-
 
 .login {
     width: 700px;
@@ -35,6 +54,9 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
+    box-shadow: 10px;
+    position: relative;
+    z-index: 2;
 }
 
 .login-title {
@@ -129,7 +151,6 @@ body {
     margin-top: 15px;
 }
 
-
 /* Media Queries */
 
 /* For screens smaller than 1366px */
@@ -142,14 +163,13 @@ body {
     .login {
         width: 70%;
     }
-
 }
+
 /* For screens smaller than 768px */
 @media (max-width: 768px) {
     .login {
         width: 60%;
     }
-
 }
 
 /* For screens smaller than 450px */
